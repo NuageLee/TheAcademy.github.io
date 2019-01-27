@@ -2,17 +2,17 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <sitemap>
-        <loc>http://yoursite-url/post-sitemap.xml</loc>
+        <loc>https://nuagelee.github.io/TheAcademy.github.io/post-sitemap.xml</loc>
         <lastmod>2019-01-26T08:35:18.247Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://yoursite-url/page-sitemap.xml</loc>
+        <loc>https://nuagelee.github.io/TheAcademy.github.io/page-sitemap.xml</loc>
         <lastmod>2019-01-26T08:35:18.575Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://yoursite-url/tag-sitemap.xml</loc>
+        <loc>https://nuagelee.github.io/TheAcademy.github.io/tag-sitemap.xml</loc>
         <lastmod>2019-01-26T08:35:18.247Z</lastmod>
     </sitemap>
 
