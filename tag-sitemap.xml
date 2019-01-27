@@ -3,14 +3,21 @@
 
     <url>
         <loc>https://nuagelee.github.io/TheAcademy.github.io/tags/Hexo/</loc>
-        <lastmod>2019-01-27T03:36:40.470Z</lastmod>
+        <lastmod>2019-01-27T06:06:26.235Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://nuagelee.github.io/TheAcademy.github.io/tags/Blog/</loc>
-        <lastmod>2019-01-27T03:36:40.470Z</lastmod>
+        <lastmod>2019-01-27T06:06:26.235Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://nuagelee.github.io/TheAcademy.github.io/tags/XXX/</loc>
+        <lastmod>2019-01-27T06:06:26.235Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
