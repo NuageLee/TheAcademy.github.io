@@ -24,7 +24,14 @@
 
     <url>
         <loc>https://nuagelee.github.io/TheAcademy.github.io/tags/Test/</loc>
-        <lastmod>2019-01-28T04:33:00.455Z</lastmod>
+        <lastmod>2019-01-28T05:46:51.392Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://nuagelee.github.io/TheAcademy.github.io/tags/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
+        <lastmod>2019-01-28T06:31:58.777Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

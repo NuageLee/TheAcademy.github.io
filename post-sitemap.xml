@@ -7,8 +7,16 @@
     </url>
 
     <url>
-        <loc>https://nuagelee.github.io/TheAcademy.github.io/2017/03/18/testblog/</loc>
-        <lastmod>2019-01-28T04:33:00.455Z</lastmod>
+        <loc>https://nuagelee.github.io/TheAcademy.github.io/2019/01/28/Hexo+GitHub+MWeb+%E4%B8%83%E7%89%9B%E4%BA%91%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+        <lastmod>2019-01-28T06:31:58.777Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://nuagelee.github.io/TheAcademy.github.io/2019/01/28/testblog/</loc>
+        <lastmod>2019-01-28T05:46:51.392Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
