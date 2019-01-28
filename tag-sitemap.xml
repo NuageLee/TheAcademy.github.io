@@ -2,35 +2,35 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>/https://www.theacademy.top/tags/Hexo/</loc>
+        <loc>https://www.theacademy.top/tags/Hexo/</loc>
         <lastmod>2019-01-27T06:06:26.235Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>/https://www.theacademy.top/tags/Blog/</loc>
+        <loc>https://www.theacademy.top/tags/Blog/</loc>
         <lastmod>2019-01-27T06:06:26.235Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>/https://www.theacademy.top/tags/XXX/</loc>
+        <loc>https://www.theacademy.top/tags/XXX/</loc>
         <lastmod>2019-01-27T06:06:26.235Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>/https://www.theacademy.top/tags/Test/</loc>
+        <loc>https://www.theacademy.top/tags/Test/</loc>
         <lastmod>2019-01-28T05:46:51.392Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>/https://www.theacademy.top/tags/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
+        <loc>https://www.theacademy.top/tags/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
         <lastmod>2019-01-28T06:31:58.777Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
