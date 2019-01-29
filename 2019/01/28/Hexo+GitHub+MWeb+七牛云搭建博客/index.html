@@ -212,6 +212,7 @@
                 post-container">
 
                 <h1><span id="hexogithubmweb搭建个人博客mac平台">Hexo+GitHub+MWeb搭建个人博客（Mac平台）</span></h1>
+<p>博客地址：www.theacademy.top</p>
 <h2><span id="hexo-安装">Hexo 安装</span></h2>
 <p>Hexo官网：<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a><br>
 官网上有详细的安装指南<br>
@@ -254,7 +255,53 @@ hexo g -d<br>
 直接生成上传<br>
 <img src="/images/15487331835411.jpg" alt=""></p>
 <h3><span id="修改github-pages">修改GitHub Pages</span></h3>
-<p>回到github中你的博客的仓库，进入仓库的Settings,在GitHub Pages 那一栏的Source选择对应的分支并保存</p>
+<p>回到github中你的博客的仓库，进入仓库的Settings,在GitHub Pages 那一栏的Source选择对应的分支并保存<br>
+<img src="/images/15487411276394.jpg" alt=""><br>
+这是绑定好域名后的，绑定域名之前只需要选择sourse里的branch就可以了，<br>
+-master branch 会把/README.md作为网站的index.html<br>
+-master branch/docs folder 会把/docs/README.md作为网站的index.html<br>
+这里选择的是master branch然后save<br>
+到这一步你就已经可以进入”<a href="http://username.github.io/yourblogname%E2%80%9C%E6%9F%A5%E7%9C%8B%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BA%86%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%83%B3%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E7%9A%84%E8%AF%9D%E4%BD%BF%E7%94%A8vscode%E6%89%93%E5%BC%80%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E4%BF%AE%E6%94%B9source%E4%B8%8B%E7%9A%84CNAME%E6%96%87%E4%BB%B6%EF%BC%8C%E4%B8%BA%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BA%86%EF%BC%8C%E8%BF%98%E6%9C%89%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%8C%E8%BF%99%E6%97%B6%E5%80%99%E4%BD%A0%E6%89%93%E5%BC%80%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%98%AF%E6%B2%A1%E6%9C%89%E6%A0%B7%E5%BC%8F%E7%9A%84%EF%BC%8C%E8%A6%81%E6%8A%8A_config.yml%E9%87%8C%E7%9A%84root%E6%94%B9%E4%B8%BA/yourblogname.github.io%E3%80%82%E4%B9%8B%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BA%86%E3%80%82" target="_blank" rel="noopener">username.github.io/yourblogname“查看你的博客了，如果不想绑定域名的话使用vscode打开博客文件夹，修改source下的CNAME文件，为上面的地址，就可以使用了，还有一个小问题，这时候你打开你的博客网站是没有样式的，要把_config.yml里的root改为/yourblogname.github.io。之后就可以使用了。</a></p>
+<h2><span id="绑定域名">绑定域名</span></h2>
+<p>我是在阿里云上购买的域名，.top的域名很便宜，第一年九块钱，看到很多小伙伴有优惠码三块钱买成的。我直接买了三年的，大概60多。这里注意一下由于17年公布的法律现在买域名都需要实名认证，所以注册阿里云之后先去实名认证了再来买域名吧。<br>
+购买后可以在域名控制台看到购买的域名<br>
+<img src="/images/15487419527596.jpg" alt=""><br>
+点击右边的解析<br>
+一开始我只添加了A解析，但是每次上传到git都会收到一条邮件，提示我将README绑定为我的github地址。<br>
+在stackoverflow上查看说要创建四个A解析和一个CNAME解析，但是阿里云A解析会和CNAME解析发生冲突。所以在这里只创建了CNAME解析，问题还是解决了。<br>
+新建解析<br>
+<img src="/images/15487422240086.jpg" alt=""><br>
+创建后保存，接下来打开vscode来修改_config.yml的URL<br>
+<img src="/images/15487423104493.jpg" alt=""><br>
+将source下CNAME里写上自己的域名，修改后上传博客就可以了<br>
+注意，每次上传博客前要先清楚之前生成的public文件，每次更新博客的时候执行下面命令就行：<br>
+hexo clean<br>
+hexo g -d<br>
+之后进入github下仓库的Settings下的GitHub Pages，会看到：<br>
+<img src="/images/15487424592882.jpg" alt=""><br>
+这时就可以通过你的域名访问你的博客了。</p>
+<h2><span id="使用mweb写博客">使用MWeb写博客</span></h2>
+<p>MWeb是一款Mac下的MarkDown编辑器，hexo静态博客的图片上传是个大问题，很多博主表示本地上传虽然可行，但是太太太麻烦了，所以这里推荐使用MWeb配合七牛云来写博客<br>
+七牛云的注册也不多说了，但是也是需要实名认证。。。真的麻烦得很啊<br>
+七牛云据说有5G的空间，对个人用户来说足够了，这也是这么多云平台大家都用七牛云的原因吧。<br>
+注册之后点击右上角的 管理控制台<br>
+<img src="/images/15487429393005.jpg" alt=""><br>
+然后选择左边栏的对象存储<br>
+新建存储空间，输入一个空间名字即可<br>
+打开MWeb -&gt; 打开偏好设置 -&gt; 发布服务，选择七牛云<br>
+空间名称：七牛云创建的空间名称<br>
+AK和SK：在七牛云的个人面板里有个秘钥管理，里面有对应的AK和SK<br>
+域名：<a href="http://username.github.io/yourblog.github.io%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E4%B8%8A%E9%9D%A2%E4%BD%A0%E9%80%9A%E8%BF%87github%E5%9C%B0%E5%9D%80%E8%AE%BF%E9%97%AE%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%9C%B0%E5%9D%80%E3%80%82" target="_blank" rel="noopener">username.github.io/yourblog.github.io其实就是上面你通过github地址访问博客的地址。</a><br>
+在MWeb中，command+E打开外部模式，这里会弹出一个编辑窗口，在右边栏中左下角点加号，引入文件夹，添加博客文件夹下的source文件夹：<br>
+<img src="/images/15487435332629.jpg" alt=""><br>
+到这一步，大功告成，我们便可以在_posts文件夹下新建Markdown来编写自己的文章了。<br>
+编写完后还是那几部：<br>
+1.cd到博客目录下<br>
+2.hexo clean<br>
+3.hexo g -d<br>
+你编写的博客便可以上床到github，并通过绑定的域名进行访问啦。<br>
+注意，不要忘了使用MWeb编写的时候要在前面添加文章设置，具体可以看你主题里自带的文章头部是什么样子的，把他们复制过来修改一哈<br>
+<img src="/images/15487438031837.jpg" alt=""></p>
 
                 
 
@@ -262,13 +309,9 @@ hexo g -d<br>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/01/28/testblog/" data-toggle="tooltip" data-placement="top" title="[Test] First blog use MWeb ">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/03/18/hexo-theme-beantech/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme BeanTech">Next Post &rarr;</a>
+                            <a href="/2019/01/28/testblog/" data-toggle="tooltip" data-placement="top" title="[Test] First blog use MWeb ">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -298,7 +341,7 @@ hexo g -d<br>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Hexo+GitHub+MWeb搭建个人博客（Mac平台）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Hexo 安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">主题选择</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">上传到GitHub</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">新建仓库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">修改_config.yml文件</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">生成静态页面</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">修改GitHub Pages</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Hexo+GitHub+MWeb搭建个人博客（Mac平台）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Hexo 安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">主题选择</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">上传到GitHub</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">新建仓库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">修改_config.yml文件</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">生成静态页面</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">修改GitHub Pages</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">绑定域名</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">使用MWeb写博客</span></a></li></ol></li></ol>
         
         </div>
       </aside>
