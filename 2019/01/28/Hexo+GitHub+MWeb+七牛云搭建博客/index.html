@@ -230,8 +230,26 @@ db.json 静态常量</p>
 <h2><span id="主题选择">主题选择</span></h2>
 <p>框架搭建好了，当然是选一个自己喜欢的主题，官网里有很多主题，并且都配备了安装和配置指南<br>
 我选择的是这款主题：<br>
-<img src="/images/15486814799339.jpg" alt=""></p>
-<p>这款主题的配置特殊一些，直接在github上下载下一个主题文件，然后再在主题文件夹里安装一次hexo。</p>
+<img src="/images/15487294619025.jpg" alt=""><br>
+这款主题的配置特殊一些，直接在github上下载下一个主题文件，然后再在主题文件夹里安装一次hexo即可。之后便可以在http://localhost:4000/端口看到自己更换好主题以后的博客了，主题的信息设置一般会在主题的github里有详细说明。</p>
+<h2><span id="上传到github">上传到GitHub</span></h2>
+<p>此时的博客智能在本地4000端口查看，可以将其上传到GitHub服务器上，GitHub为每一个仓库设计了一个接口，可以添加对该项目的介绍网页，我们利用这一功能，将博客上传为介绍网页，就可以通过GitHub地址进行访问了。</p>
+<h3><span id="新建仓库">新建仓库</span></h3>
+<p><img src="/images/15487315741621.jpg" alt=""><br>
+仓库的名字一定要为：your blog’s <a href="http://name.github.io" target="_blank" rel="noopener">name.github.io</a><br>
+<a href="http://xn--ihqsf1g3ns4lyzcu4nhmn08mi71buleqyn529c.github.io" target="_blank" rel="noopener">之前看了很多文章说可以不用.github.io</a>，亲测如果不加加载不出网页样式，所以还是一定要加上.</p>
+<h3><span id="修改_configyml文件">修改_config.yml文件</span></h3>
+<p>用vscode打开博客文件夹，修改_config.yml文件下的deploy配置：<br>
+<img src="/images/15487325802961.jpg" alt=""></p>
+<h3><span id="生成静态页面">生成静态页面</span></h3>
+<p>关联好git以后，在终端输入：<br>
+hexo g<br>
+生成静态页面，执行后博客文件夹内会生成一个public文件夹，就是生成的静态文件了，把它上传到github即可：<br>
+hexo d<br>
+上传到github，第一次上传需要你在终端内输入git的名字和密码<br>
+之后也可以使用命令：<br>
+hexo g -d<br>
+直接生成上传</p>
 
                 
 
@@ -239,13 +257,9 @@ db.json 静态常量</p>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/01/28/testblog/" data-toggle="tooltip" data-placement="top" title="[Test] First blog use MWeb ">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/03/18/hexo-theme-beantech/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme BeanTech">Next Post &rarr;</a>
+                            <a href="/2019/01/28/testblog/" data-toggle="tooltip" data-placement="top" title="[Test] First blog use MWeb ">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -275,7 +289,7 @@ db.json 静态常量</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Hexo+GitHub+MWeb搭建个人博客（Mac平台）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Hexo 安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">主题选择</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Hexo+GitHub+MWeb搭建个人博客（Mac平台）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Hexo 安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">主题选择</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">上传到GitHub</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">新建仓库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">修改_config.yml文件</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">生成静态页面</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
