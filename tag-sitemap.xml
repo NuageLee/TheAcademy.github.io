@@ -52,7 +52,21 @@
 
     <url>
         <loc>http://www.theacademy.top/tags/%E5%93%B2%E5%AD%A6/</loc>
-        <lastmod>2019-02-22T16:51:24.701Z</lastmod>
+        <lastmod>2019-03-01T08:30:12.311Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.theacademy.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+        <lastmod>2019-03-01T10:03:35.789Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.theacademy.top/tags/%E5%90%8E%E7%AB%AF/</loc>
+        <lastmod>2019-03-07T09:43:13.114Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
