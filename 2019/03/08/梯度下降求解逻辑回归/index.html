@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Nuage&#39;s Blog
+          【机器学习】简单的逻辑回归例子 - Nuage&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.theacademy.top/2019/03/13/梯度下降求解逻辑回归/">
+    <link rel="canonical" href="http://www.theacademy.top/2019/03/08/梯度下降求解逻辑回归/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -70,7 +70,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('undefined')
+            background-image: url('Demo.png')
             /*post*/
         
     }
@@ -87,12 +87,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                            
                         </div>
-                        <h1></h1>
-                        <h2 class="subheading"></h2>
+                        <h1>【机器学习】简单的逻辑回归例子</h1>
+                        <h2 class="subheading">逻辑回归模型</h2>
                         <span class="meta">
                             Posted by Nuage on
-                            2019-03-13
+                            2019-03-08
                         </span>
                     </div>
                 
@@ -146,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -314,7 +316,7 @@ Theta: [[-0.00027127  0.00705232  0.00376711]] - Iter: 5000 - Last cost: 0.63 - 
 
 array([[-0.00027127,  0.00705232,  0.00376711]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_33_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_33_2.png" alt="png"></p>
 <h4><span id="根据损失值停止">根据损失值停止</span></h4>
 <p>设定阈值 1E-6, 差不多需要110 000次迭代</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, n, STOP_COST, thresh=<span class="number">0.000001</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
@@ -327,7 +329,7 @@ Theta: [[-5.13364014  0.04771429  0.04072397]] - Iter: 109901 - Last cost: 0.38 
 
 array([[-5.13364014,  0.04771429,  0.04072397]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_36_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_36_2.png" alt="png"></p>
 <h4><span id="根据梯度变化停止">根据梯度变化停止</span></h4>
 <p>设定阈值 0.05,差不多需要40 000次迭代</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, n, STOP_GRAD, thresh=<span class="number">0.05</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
@@ -340,7 +342,7 @@ Theta: [[-2.37033409  0.02721692  0.01899456]] - Iter: 40045 - Last cost: 0.49 -
 
 array([[-2.37033409,  0.02721692,  0.01899456]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_39_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_39_2.png" alt="png"></p>
 <h3><span id="对比不同的梯度下降方法">对比不同的梯度下降方法</span></h3>
 <h4><span id="stochastic-descent">Stochastic descent</span></h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, <span class="number">1</span>, STOP_ITER, thresh=<span class="number">5000</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
@@ -353,7 +355,7 @@ Theta: [[-0.39002018  0.07622895  0.05291197]] - Iter: 5000 - Last cost: 2.59 - 
 
 array([[-0.39002018,  0.07622895,  0.05291197]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_42_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_42_2.png" alt="png"></p>
 <p>有点爆炸。。。很不稳定,再来试试把学习率调小一些</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, <span class="number">1</span>, STOP_ITER, thresh=<span class="number">15000</span>, alpha=<span class="number">0.000002</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>***Original data - learning rate: 2e-06 - Stochastic descent - Stop: 15000 iterations
@@ -365,7 +367,7 @@ Theta: [[-0.00202067  0.01007998  0.00100069]] - Iter: 15000 - Last cost: 0.63 -
 
 array([[-0.00202067,  0.01007998,  0.00100069]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_44_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_44_2.png" alt="png"></p>
 <p>速度快，但稳定性差，需要很小的学习率</p>
 <h4><span id="mini-batch-descent">Mini-batch descent</span></h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, <span class="number">16</span>, STOP_ITER, thresh=<span class="number">15000</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
@@ -378,7 +380,7 @@ Theta: [[-1.03883666  0.02088297  0.00532339]] - Iter: 15000 - Last cost: 0.56 -
 
 array([[-1.03883666,  0.02088297,  0.00532339]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_47_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_47_2.png" alt="png"></p>
 <p>浮动仍然比较大，我们来尝试下对数据进行标准化<br>
 将数据按其属性(按列进行)减去其均值，然后除以其方差。最后得到的结果是，对每个属性/每列来说所有数据都聚集在0附近，方差值为1</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing <span class="keyword">as</span> pp</span><br><span class="line"></span><br><span class="line">scaled_data = orig_data.copy()</span><br><span class="line">scaled_data[:, <span class="number">1</span>:<span class="number">3</span>] = pp.scale(orig_data[:, <span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">runExpe(scaled_data, theta, n, STOP_ITER, thresh=<span class="number">5000</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
@@ -391,7 +393,7 @@ Theta: [[0.3080807  0.86494967 0.77367651]] - Iter: 5000 - Last cost: 0.38 - Dur
 
 array([[0.3080807 , 0.86494967, 0.77367651]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_49_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_49_2.png" alt="png"></p>
 <p>它好多了！原始数据，只能达到达到0.61，而我们得到了0.38个在这里！<br>
 所以对数据做预处理是非常重要的</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(scaled_data, theta, n, STOP_GRAD, thresh=<span class="number">0.02</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
@@ -404,13 +406,13 @@ Theta: [[1.0707921  2.63030842 2.41079787]] - Iter: 59422 - Last cost: 0.22 - Du
 
 array([[1.0707921 , 2.63030842, 2.41079787]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_51_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_51_2.png" alt="png"></p>
 <p>更多的迭代次数会使得损失下降的更多！</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theta = runExpe(scaled_data, theta, <span class="number">1</span>, STOP_GRAD, thresh=<span class="number">0.002</span>/<span class="number">5</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>***Scaled data - learning rate: 0.001 - Stochastic descent - Stop: gradient norm &lt; 0.0004
 Theta: [[1.14806246 2.79358835 2.56525695]] - Iter: 72580 - Last cost: 0.22 - Duration: 11.03s
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_53_1.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_53_1.png" alt="png"></p>
 <p>随机梯度下降更快，但是我们需要迭代的次数也需要更多，所以还是用batch的比较合适！！！</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(scaled_data, theta, <span class="number">16</span>, STOP_GRAD, thresh=<span class="number">0.002</span>*<span class="number">2</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>***Scaled data - learning rate: 0.001 - Mini-batch (16) descent - Stop: gradient norm &lt; 0.004
@@ -422,7 +424,7 @@ Theta: [[1.15951073 2.81556145 2.58819778]] - Iter: 2120 - Last cost: 0.22 - Dur
 
 array([[1.15951073, 2.81556145, 2.58819778]])
 </code></pre>
-<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_55_2.png" alt="png"></p>
+<p><img src="/2019/03/08/梯度下降求解逻辑回归/output_55_2.png" alt="png"></p>
 <h2><span id="精度">精度</span></h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设定阈值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(X, theta)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span> <span class="keyword">if</span> x &gt;= <span class="number">0.5</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> model(X, theta)]</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scaled_X = scaled_data[:, :<span class="number">3</span>]</span><br><span class="line">y = scaled_data[:, <span class="number">3</span>]</span><br><span class="line">predictions = predict(scaled_X, theta)</span><br><span class="line">correct = [<span class="number">1</span> <span class="keyword">if</span> ((a == <span class="number">1</span> <span class="keyword">and</span> b == <span class="number">1</span>) <span class="keyword">or</span> (a == <span class="number">0</span> <span class="keyword">and</span> b == <span class="number">0</span>)) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> (a, b) <span class="keyword">in</span> zip(predictions, y)]</span><br><span class="line">accuracy = (sum(map(int, correct)) % len(correct))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">'accuracy = &#123;0&#125;%'</span>.format(accuracy))</span><br></pre></td></tr></table></figure>
@@ -434,6 +436,10 @@ array([[1.15951073, 2.81556145, 2.58819778]])
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/03/08/softmax/" data-toggle="tooltip" data-placement="top" title="【机器学习】多分类softmax分类器">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -462,6 +468,17 @@ array([[1.15951073, 2.81556145, 2.58819778]])
             <!-- Tabe of Content -->
             <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Logistic Regression</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">The data</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">The logistic regression</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">要完成的模块</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">sigmoid 函数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">Sigmoid</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">损失函数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.5.</span> <span class="toc-nav-text">计算梯度</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.6.</span> <span class="toc-nav-text">Gradient descent</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.7.</span> <span class="toc-nav-text">不同的停止策略</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.7.1.</span> <span class="toc-nav-text">设定迭代次数</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.7.2.</span> <span class="toc-nav-text">根据损失值停止</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.7.3.</span> <span class="toc-nav-text">根据梯度变化停止</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.8.</span> <span class="toc-nav-text">对比不同的梯度下降方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.8.1.</span> <span class="toc-nav-text">Stochastic descent</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.8.2.</span> <span class="toc-nav-text">Mini-batch descent</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">精度</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
                 
             <!-- Sidebar Container -->
             <div class="
@@ -476,6 +493,8 @@ array([[1.15951073, 2.81556145, 2.58819778]])
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                        
                     </div>
                 </section>
                 
@@ -509,8 +528,8 @@ array([[1.15951073, 2.81556145, 2.58819778]])
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://www.theacademy.top/2019/03/13/梯度下降求解逻辑回归/";
-    var disqus_url = "http://www.theacademy.top/2019/03/13/梯度下降求解逻辑回归/";
+    var disqus_identifier = "http://www.theacademy.top/2019/03/08/梯度下降求解逻辑回归/";
+    var disqus_url = "http://www.theacademy.top/2019/03/08/梯度下降求解逻辑回归/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
