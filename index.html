@@ -140,14 +140,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -210,50 +210,26 @@
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/逻辑回归/">
+    <a href="/2019/03/13/梯度下降求解逻辑回归/">
         <h2 class="post-title">
-            【机器学习】逻辑回归
+            Untitled
         </h2>
         <h3 class="post-subtitle">
-            逻辑回归模型
+            
         </h3>
         <div class="post-content-preview">
-            逻辑回归
-逻辑回归是最经典的二分类的算法，首选分类算法为逻辑回归
-逻辑回归的决策边界：可以是非线性的
-Sigmoid函数
-
-
-sigmoid把任意的一个输入映射到一个0——1区间，转换为概率
-公式
-预测函数
-
-其中
-如果做一个二分类任务：
-
-整合：
-
-当y=0时，
-
-当y=1时：
-
-求解逻辑回归
-求解似然函数
-
-似然函数求得是极大值，是一个梯度上升问题，引入：
-
-将其转换为梯度下降任务
-求导......
+            Logistic Regression
+The data
+我们将建立一个逻辑回归模型来预测一个学生是否被大学录取。假设你是一个大学系的管理员，你想根据两次考试的结果来决定每个申请人的录取机会。你有以前的申请人的历史数据，你可以用它作为逻辑回归的训练集。对于每一个培训例子，你有两个考试的申请人的分数和录取决定。为了做到这一点，我们将建立一个分类模型，根据考试成绩估计入学概率。
+###首先导入p......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Nuage on
-            2019-03-08
+            2019-03-13
         </p>
         <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
             
         </div>
     
@@ -307,30 +283,129 @@ sigmoid把任意的一个输入映射到一个0——1区间，转换为概率
 
 <div class="post-preview">
 
-    <a href="/2019/02/22/决策树算法/">
+    <a href="/2019/03/08/softmax/">
         <h2 class="post-title">
-            【机器学习理论】「西瓜书第四章」决策树
+            【机器学习】多分类softmax分类器
         </h2>
         <h3 class="post-subtitle">
-            穷查理宝典中对西塞罗部分摘抄
+            逻辑回归模型
         </h3>
         <div class="post-content-preview">
-            什么是决策树
-依据树的结构来进行决策，通常包含一个根节点（）、若干个内部节点和若干个叶节点。跟节点包含样本全集，每个节点代表一个属性，从根节点到一个叶节点对应了一个判定测试序列。
-决策树的目的是产生一棵繁华能力强，的决策树，其基本流程遵循分而治之的策略
-
-伪代码：
-1234567891011121314151617181920输入集: training set: D = &#123;(x1,......
+            ...
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Nuage on
-            2019-02-22
+            2019-03-08
         </p>
         <div class="tags">
             
-              <a href="/tags/#后端" title="后端">后端</a>
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/08/信用卡欺诈案例/">
+        <h2 class="post-title">
+            【机器学习】Kaggle信用卡欺诈案例
+        </h2>
+        <h3 class="post-subtitle">
+            逻辑回归模型
+        </h3>
+        <div class="post-content-preview">
+            ...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/08/逻辑回归/">
+        <h2 class="post-title">
+            【机器学习】逻辑回归
+        </h2>
+        <h3 class="post-subtitle">
+            逻辑回归模型
+        </h3>
+        <div class="post-content-preview">
+            逻辑回归
+逻辑回归虽然也叫回归，但是却是一个分类模型。是最经典的二分类方法，一般拿到一个分类任务首先尝试的就是逻辑回归，再看其他方法是否比逻辑回归好。
+逻辑回归的决策边界：可以是非线性的
+Sigmoid函数
+
+
+sigmoid把任意的一个输入映射到一个0——1区间，转换为概率
+公式
+预测函数
+
+其中
+如果做一个二分类任务：
+
+对于y=1和y=0时：
+
+整合：
+
+求解逻辑回归
+求解似然函数
+
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/08/简单的逻辑回归例子/">
+        <h2 class="post-title">
+            【机器学习】简单的逻辑回归例子
+        </h2>
+        <h3 class="post-subtitle">
+            逻辑回归模型
+        </h3>
+        <div class="post-content-preview">
+            ...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
             
         </div>
     
@@ -415,6 +490,39 @@ ginger目录下新建ginger.py
 
 <div class="post-preview">
 
+    <a href="/2019/02/22/决策树算法/">
+        <h2 class="post-title">
+            【机器学习理论】「西瓜书第四章」决策树
+        </h2>
+        <h3 class="post-subtitle">
+            穷查理宝典中对西塞罗部分摘抄
+        </h3>
+        <div class="post-content-preview">
+            什么是决策树
+依据树的结构来进行决策，通常包含一个根节点（）、若干个内部节点和若干个叶节点。跟节点包含样本全集，每个节点代表一个属性，从根节点到一个叶节点对应了一个判定测试序列。
+决策树的目的是产生一棵繁华能力强，的决策树，其基本流程遵循分而治之的策略
+
+伪代码：
+1234567891011121314151617181920输入集: training set: D = &#123;(x1,......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/02/05/Pian care/">
         <h2 class="post-title">
             Pidan信誉崩塌，为什么我说上门铲屎就是个笑话
@@ -437,133 +545,6 @@ ginger目录下新建ginger.py
         <div class="tags">
             
               <a href="/tags/#动保" title="动保">动保</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/01/29/宁浩虐狗/">
-        <h2 class="post-title">
-            《疯狂的外星人》拍摄现场虐狗被实锤？细数影史上著名的十大虐待动物电影
-        </h2>
-        <h3 class="post-subtitle">
-            细数影史上著名的十大虐待动物电影
-        </h3>
-        <div class="post-content-preview">
-            《疯狂的外星人》拍摄现场虐狗被实锤？细数影史上著名的十大虐待动物电影
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-01-29
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#动保" title="动保">动保</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/01/28/testblog/">
-        <h2 class="post-title">
-            [Test] First blog use MWeb 
-        </h2>
-        <h3 class="post-subtitle">
-            This is my first blog for test!
-        </h3>
-        <div class="post-content-preview">
-            This is my first blog for test
-hahahahas
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-01-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Test" title="Test">Test</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/01/28/Hexo+GitHub+MWeb+七牛云搭建博客/">
-        <h2 class="post-title">
-            使用Hexo+GitHub+MWeb搭建个人博客（Mac平台）
-        </h2>
-        <h3 class="post-subtitle">
-            快速搭建个人博客系统
-        </h3>
-        <div class="post-content-preview">
-            Hexo+GitHub+MWeb搭建个人博客（Mac平台）
-博客地址：www.theacademy.top
-Hexo 安装
-Hexo官网：https://hexo.io/zh-cn/
-官网上有详细的安装指南
-
-这时候就在blog文件夹安装好了hexo框架，开启hexo server后，在http://localhost:4000/.端口就可以看到自己的本地博客了。
-然后，使用VSCode打开......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-01-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hexo博客搭建" title="Hexo博客搭建">Hexo博客搭建</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/01/28/15天入门健身/">
-        <h2 class="post-title">
-            健身入门，真的没必要请教练
-        </h2>
-        <h3 class="post-subtitle">
-            快速搭建个人博客系统
-        </h3>
-        <div class="post-content-preview">
-            健身入门，真的没有必要请教练
-1月12号，为了完成训练计划，头稍微有点疼依旧跑去做了几组大重量，晚上回去就发烧，肺炎，住院七天。。。现在依旧在家里养病
-养病好啊，不健身的时候，想想自己已经练到第八个年头了，不敢说练得多好，恩，踩得坑不少是真的。
-正好最近在搭建个人博客，于是有了写一写自己经验的想法。
-想去健身房？首先搞清楚你要去干嘛！
-12年1月，大学第一个寒假，我和老爹一起报了个健身房，离......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-01-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#健身" title="健身">健身</a>
             
         </div>
     
@@ -609,14 +590,6 @@ Hexo官网：https://hexo.io/zh-cn/
             
         
             
-            <a href="/tags/#动保" title="动保" rel="2">动保</a>
-            
-        
-            
-        
-            
-        
-            
         
             
         
@@ -629,7 +602,15 @@ Hexo官网：https://hexo.io/zh-cn/
             
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="3">机器学习</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="6">机器学习</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#动保" title="动保" rel="2">动保</a>
+            
+        
             
         
     </div>
@@ -702,7 +683,7 @@ Hexo官网：https://hexo.io/zh-cn/
     <ul>
       
         <li>
-          <a href="/2019/03/08/逻辑回归/">【机器学习】逻辑回归</a>
+          <a href="/2019/03/13/梯度下降求解逻辑回归/">(no title)</a>
         </li>
       
         <li>
@@ -710,15 +691,15 @@ Hexo官网：https://hexo.io/zh-cn/
         </li>
       
         <li>
-          <a href="/2019/02/22/决策树算法/">【机器学习理论】「西瓜书第四章」决策树</a>
+          <a href="/2019/03/08/softmax/">【机器学习】多分类softmax分类器</a>
         </li>
       
         <li>
-          <a href="/2019/02/22/pipenv/">【Python Flask】「一」项目初始化</a>
+          <a href="/2019/03/08/信用卡欺诈案例/">【机器学习】Kaggle信用卡欺诈案例</a>
         </li>
       
         <li>
-          <a href="/2019/02/22/初识西塞罗/">初识西塞罗</a>
+          <a href="/2019/03/08/逻辑回归/">【机器学习】逻辑回归</a>
         </li>
       
     </ul>

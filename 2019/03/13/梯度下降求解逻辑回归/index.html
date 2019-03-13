@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Nuage&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.theacademy.top/2019/03/13/梯度下降求解逻辑回归/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('undefined')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1></h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Nuage on
+                            2019-03-13
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Academy</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1><span id="logistic-regression">Logistic Regression</span></h1>
+<h2><span id="the-data">The data</span></h2>
+<p>我们将建立一个逻辑回归模型来预测一个学生是否被大学录取。假设你是一个大学系的管理员，你想根据两次考试的结果来决定每个申请人的录取机会。你有以前的申请人的历史数据，你可以用它作为逻辑回归的训练集。对于每一个培训例子，你有两个考试的申请人的分数和录取决定。为了做到这一点，我们将建立一个分类模型，根据考试成绩估计入学概率。</p>
+<p>###首先导入python三大件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#三大件</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+<p>###读取文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pdData = pd.read_csv(<span class="string">"LogiReg_data.txt"</span>, header=<span class="keyword">None</span>, names=[<span class="string">'Exam1'</span>, <span class="string">"Exam2"</span>, <span class="string">'Admitted'</span>])</span><br><span class="line">pdData.head()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15524500715246.jpg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdData.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(100, 3)
+</code></pre>
+<p>###数据可视化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">positive = pdData[pdData[<span class="string">'Admitted'</span>] == <span class="number">1</span>] </span><br><span class="line">negative = pdData[pdData[<span class="string">'Admitted'</span>] == <span class="number">0</span>] </span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">5</span>))</span><br><span class="line">ax.scatter(positive[<span class="string">'Exam1'</span>], positive[<span class="string">'Exam2'</span>], s=<span class="number">30</span>, c=<span class="string">'b'</span>, marker=<span class="string">'o'</span>, label=<span class="string">'Admitted'</span>)</span><br><span class="line">ax.scatter(negative[<span class="string">'Exam1'</span>], negative[<span class="string">'Exam2'</span>], s=<span class="number">30</span>, c=<span class="string">'r'</span>, marker=<span class="string">'x'</span>, label=<span class="string">'Not Admitted'</span>)</span><br><span class="line">ax.legend()</span><br><span class="line">ax.set_xlabel(<span class="string">'Exam 1 Score'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Exam 2 Score'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15524501756057.jpg" alt=""></p>
+<h2><span id="the-logistic-regression">The logistic regression</span></h2>
+<p>目标：建立分类器（求解出三个参数 $\theta_0         \theta_1         \theta_2 $）<br>
+设定阈值，根据阈值判断录取结果</p>
+<h3><span id="要完成的模块">要完成的模块</span></h3>
+<ul>
+<li><code>sigmoid</code> : 映射到概率的函数</li>
+<li><code>model</code> : 返回预测结果值</li>
+<li><code>cost</code> : 根据参数计算损失</li>
+<li><code>gradient</code> : 计算每个参数的梯度方向</li>
+<li><code>descent</code> : 进行参数更新</li>
+<li><code>accuracy</code>: 计算精度</li>
+</ul>
+<h3><span id="sigmoid-函数"><code>sigmoid</code> 函数</span></h3>
+<p><img src="/images/15524502508860.jpg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(z)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">1</span> + np.exp(-z))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums = np.arange(<span class="number">-10</span>, <span class="number">10</span>, step=<span class="number">1</span>) <span class="comment">#creates a vector containing 20 equally spaced values from -10 to 10</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">4</span>))</span><br><span class="line">ax.plot(nums, sigmoid(nums), <span class="string">'r'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15524503721615.jpg" alt=""></p>
+<h3><span id="sigmoid">Sigmoid</span></h3>
+<ul>
+<li>$g:\mathbb{R} \to [0,1]$</li>
+<li>$g(0)=0.5$</li>
+<li>$g(- \infty)=0$</li>
+<li>$g(+ \infty)=1$</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span><span class="params">(X, theta)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sigmoid(np.dot(X, theta.T))</span><br></pre></td></tr></table></figure>
+<p>$$<br>
+\begin{array}{ccc}<br>
+\begin{pmatrix}\theta_{0} &amp; \theta_{1} &amp; \theta_{2}\end{pmatrix} &amp; \times &amp; \begin{pmatrix}1\<br>
+x_{1}\<br>
+x_{2}<br>
+\end{pmatrix}\end{array}=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}<br>
+$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pdData.insert(<span class="number">0</span>, <span class="string">'Ones'</span>, <span class="number">1</span>) <span class="comment"># in a try / except structure so as not to return an error if the block si executed several times</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># set X (training data) and y (target variable)</span></span><br><span class="line">orig_data = pdData.as_matrix() <span class="comment"># convert the Pandas representation of the data to an array useful for further computations</span></span><br><span class="line">cols = orig_data.shape[<span class="number">1</span>]</span><br><span class="line">X = orig_data[:,<span class="number">0</span>:cols<span class="number">-1</span>]</span><br><span class="line">y = orig_data[:,cols<span class="number">-1</span>:cols]</span><br><span class="line"></span><br><span class="line"><span class="comment"># convert to numpy arrays and initalize the parameter array theta</span></span><br><span class="line"><span class="comment">#X = np.matrix(X.values)</span></span><br><span class="line"><span class="comment">#y = np.matrix(data.iloc[:,3:4].values) #np.array(y.values)</span></span><br><span class="line">theta = np.zeros([<span class="number">1</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>/Users/liyunhao/anaconda3/envs/tensorflow/lib/python3.6/site-packages/ipykernel_launcher.py:6: FutureWarning: Method .as_matrix will be removed in a future version. Use .values instead.
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 1.        , 34.62365962, 78.02469282],
+       [ 1.        , 30.28671077, 43.89499752],
+       [ 1.        , 35.84740877, 72.90219803],
+       [ 1.        , 60.18259939, 86.3085521 ],
+       [ 1.        , 79.03273605, 75.34437644]])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>array([[0.],
+       [0.],
+       [0.],
+       [1.],
+       [1.]])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theta</span><br></pre></td></tr></table></figure>
+<pre><code>array([[0., 0., 0.]])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.shape, y.shape, theta.shape</span><br></pre></td></tr></table></figure>
+<pre><code>((100, 3), (100, 1), (1, 3))
+</code></pre>
+<h3><span id="损失函数">损失函数</span></h3>
+<p>将对数似然函数去负号</p>
+<p>$$<br>
+D(h_\theta(x), y) = -y\log(h_\theta(x)) - (1-y)\log(1-h_\theta(x))<br>
+$$<br>
+求平均损失<br>
+$$<br>
+J(\theta)=\frac{1}{n}\sum_{i=1}^{n} D(h_\theta(x_i), y_i)<br>
+$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cost</span><span class="params">(X, y, theta)</span>:</span></span><br><span class="line">    left = np.multiply(-y, np.log(model(X, theta)))</span><br><span class="line">    right = np.multiply(<span class="number">1</span> - y, np.log(<span class="number">1</span> - model(X, theta)))</span><br><span class="line">    <span class="keyword">return</span> np.sum(left - right) / (len(X))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cost(X, y, theta)</span><br></pre></td></tr></table></figure>
+<pre><code>0.6931471805599453
+</code></pre>
+<h3><span id="计算梯度">计算梯度</span></h3>
+<p>$$<br>
+\frac{\partial J}{\partial \theta_j}=-\frac{1}{m}\sum_{i=1}^n (y_i - h_\theta (x_i))x_{ij}<br>
+$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient</span><span class="params">(X, y, theta)</span>:</span></span><br><span class="line">    grad = np.zeros(theta.shape)</span><br><span class="line">    error = (model(X, theta)- y).ravel()</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(theta.ravel())): <span class="comment">#for each parmeter</span></span><br><span class="line">        term = np.multiply(error, X[:,j])</span><br><span class="line">        grad[<span class="number">0</span>, j] = np.sum(term) / len(X)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> grad</span><br></pre></td></tr></table></figure>
+<h3><span id="gradient-descent">Gradient descent</span></h3>
+<p>比较3中不同梯度下降方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">STOP_ITER = <span class="number">0</span></span><br><span class="line">STOP_COST = <span class="number">1</span></span><br><span class="line">STOP_GRAD = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stopCriterion</span><span class="params">(type, value, threshold)</span>:</span></span><br><span class="line">    <span class="comment">#设定三种不同的停止策略</span></span><br><span class="line">    <span class="keyword">if</span> type == STOP_ITER:        <span class="keyword">return</span> value &gt; threshold</span><br><span class="line">    <span class="keyword">elif</span> type == STOP_COST:      <span class="keyword">return</span> abs(value[<span class="number">-1</span>]-value[<span class="number">-2</span>]) &lt; threshold</span><br><span class="line">    <span class="keyword">elif</span> type == STOP_GRAD:      <span class="keyword">return</span> np.linalg.norm(value) &lt; threshold</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy.random</span><br><span class="line"><span class="comment">#洗牌</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffleData</span><span class="params">(data)</span>:</span></span><br><span class="line">    np.random.shuffle(data)</span><br><span class="line">    cols = data.shape[<span class="number">1</span>]</span><br><span class="line">    X = data[:, <span class="number">0</span>:cols<span class="number">-1</span>]</span><br><span class="line">    y = data[:, cols<span class="number">-1</span>:]</span><br><span class="line">    <span class="keyword">return</span> X, y</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">descent</span><span class="params">(data, theta, batchSize, stopType, thresh, alpha)</span>:</span></span><br><span class="line">    <span class="comment">#梯度下降求解</span></span><br><span class="line">    </span><br><span class="line">    init_time = time.time()</span><br><span class="line">    i = <span class="number">0</span> <span class="comment"># 迭代次数</span></span><br><span class="line">    k = <span class="number">0</span> <span class="comment"># batch</span></span><br><span class="line">    X, y = shuffleData(data)</span><br><span class="line">    grad = np.zeros(theta.shape) <span class="comment"># 计算的梯度</span></span><br><span class="line">    costs = [cost(X, y, theta)] <span class="comment"># 损失值</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        grad = gradient(X[k:k+batchSize], y[k:k+batchSize], theta)</span><br><span class="line">        k += batchSize <span class="comment">#取batch数量个数据</span></span><br><span class="line">        <span class="keyword">if</span> k &gt;= n: </span><br><span class="line">            k = <span class="number">0</span> </span><br><span class="line">            X, y = shuffleData(data) <span class="comment">#重新洗牌</span></span><br><span class="line">        theta = theta - alpha*grad <span class="comment"># 参数更新</span></span><br><span class="line">        costs.append(cost(X, y, theta)) <span class="comment"># 计算新的损失</span></span><br><span class="line">        i += <span class="number">1</span> </span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> stopType == STOP_ITER:       value = i</span><br><span class="line">        <span class="keyword">elif</span> stopType == STOP_COST:     value = costs</span><br><span class="line">        <span class="keyword">elif</span> stopType == STOP_GRAD:     value = grad</span><br><span class="line">        <span class="keyword">if</span> stopCriterion(stopType, value, thresh): <span class="keyword">break</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> theta, i<span class="number">-1</span>, costs, grad, time.time() - init_time</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runExpe</span><span class="params">(data, theta, batchSize, stopType, thresh, alpha)</span>:</span></span><br><span class="line">    <span class="comment">#import pdb; pdb.set_trace();</span></span><br><span class="line">    theta, iter, costs, grad, dur = descent(data, theta, batchSize, stopType, thresh, alpha)</span><br><span class="line">    name = <span class="string">"Original"</span> <span class="keyword">if</span> (data[:,<span class="number">1</span>]&gt;<span class="number">2</span>).sum() &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="string">"Scaled"</span></span><br><span class="line">    name += <span class="string">" data - learning rate: &#123;&#125; - "</span>.format(alpha)</span><br><span class="line">    <span class="keyword">if</span> batchSize==n: strDescType = <span class="string">"Gradient"</span></span><br><span class="line">    <span class="keyword">elif</span> batchSize==<span class="number">1</span>:  strDescType = <span class="string">"Stochastic"</span></span><br><span class="line">    <span class="keyword">else</span>: strDescType = <span class="string">"Mini-batch (&#123;&#125;)"</span>.format(batchSize)</span><br><span class="line">    name += strDescType + <span class="string">" descent - Stop: "</span></span><br><span class="line">    <span class="keyword">if</span> stopType == STOP_ITER: strStop = <span class="string">"&#123;&#125; iterations"</span>.format(thresh)</span><br><span class="line">    <span class="keyword">elif</span> stopType == STOP_COST: strStop = <span class="string">"costs change &lt; &#123;&#125;"</span>.format(thresh)</span><br><span class="line">    <span class="keyword">else</span>: strStop = <span class="string">"gradient norm &lt; &#123;&#125;"</span>.format(thresh)</span><br><span class="line">    name += strStop</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"***&#123;&#125;\nTheta: &#123;&#125; - Iter: &#123;&#125; - Last cost: &#123;:03.2f&#125; - Duration: &#123;:03.2f&#125;s"</span>.format(</span><br><span class="line">        name, theta, iter, costs[<span class="number">-1</span>], dur))</span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">4</span>))</span><br><span class="line">    ax.plot(np.arange(len(costs)), costs, <span class="string">'r'</span>)</span><br><span class="line">    ax.set_xlabel(<span class="string">'Iterations'</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">'Cost'</span>)</span><br><span class="line">    ax.set_title(name.upper() + <span class="string">' - Error vs. Iteration'</span>)</span><br><span class="line">    <span class="keyword">return</span> theta</span><br></pre></td></tr></table></figure>
+<h3><span id="不同的停止策略">不同的停止策略</span></h3>
+<h4><span id="设定迭代次数">设定迭代次数</span></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选择的梯度下降方法是基于所有样本的</span></span><br><span class="line">n=<span class="number">100</span></span><br><span class="line">runExpe(orig_data, theta, n, STOP_ITER, thresh=<span class="number">5000</span>, alpha=<span class="number">0.000001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Original data - learning rate: 1e-06 - Gradient descent - Stop: 5000 iterations
+Theta: [[-0.00027127  0.00705232  0.00376711]] - Iter: 5000 - Last cost: 0.63 - Duration: 1.39s
+
+
+
+
+
+array([[-0.00027127,  0.00705232,  0.00376711]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_33_2.png" alt="png"></p>
+<h4><span id="根据损失值停止">根据损失值停止</span></h4>
+<p>设定阈值 1E-6, 差不多需要110 000次迭代</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, n, STOP_COST, thresh=<span class="number">0.000001</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Original data - learning rate: 0.001 - Gradient descent - Stop: costs change &lt; 1e-06
+Theta: [[-5.13364014  0.04771429  0.04072397]] - Iter: 109901 - Last cost: 0.38 - Duration: 36.67s
+
+
+
+
+
+array([[-5.13364014,  0.04771429,  0.04072397]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_36_2.png" alt="png"></p>
+<h4><span id="根据梯度变化停止">根据梯度变化停止</span></h4>
+<p>设定阈值 0.05,差不多需要40 000次迭代</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, n, STOP_GRAD, thresh=<span class="number">0.05</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Original data - learning rate: 0.001 - Gradient descent - Stop: gradient norm &lt; 0.05
+Theta: [[-2.37033409  0.02721692  0.01899456]] - Iter: 40045 - Last cost: 0.49 - Duration: 14.44s
+
+
+
+
+
+array([[-2.37033409,  0.02721692,  0.01899456]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_39_2.png" alt="png"></p>
+<h3><span id="对比不同的梯度下降方法">对比不同的梯度下降方法</span></h3>
+<h4><span id="stochastic-descent">Stochastic descent</span></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, <span class="number">1</span>, STOP_ITER, thresh=<span class="number">5000</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Original data - learning rate: 0.001 - Stochastic descent - Stop: 5000 iterations
+Theta: [[-0.39002018  0.07622895  0.05291197]] - Iter: 5000 - Last cost: 2.59 - Duration: 0.62s
+
+
+
+
+
+array([[-0.39002018,  0.07622895,  0.05291197]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_42_2.png" alt="png"></p>
+<p>有点爆炸。。。很不稳定,再来试试把学习率调小一些</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, <span class="number">1</span>, STOP_ITER, thresh=<span class="number">15000</span>, alpha=<span class="number">0.000002</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Original data - learning rate: 2e-06 - Stochastic descent - Stop: 15000 iterations
+Theta: [[-0.00202067  0.01007998  0.00100069]] - Iter: 15000 - Last cost: 0.63 - Duration: 1.73s
+
+
+
+
+
+array([[-0.00202067,  0.01007998,  0.00100069]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_44_2.png" alt="png"></p>
+<p>速度快，但稳定性差，需要很小的学习率</p>
+<h4><span id="mini-batch-descent">Mini-batch descent</span></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(orig_data, theta, <span class="number">16</span>, STOP_ITER, thresh=<span class="number">15000</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Original data - learning rate: 0.001 - Mini-batch (16) descent - Stop: 15000 iterations
+Theta: [[-1.03883666  0.02088297  0.00532339]] - Iter: 15000 - Last cost: 0.56 - Duration: 2.12s
+
+
+
+
+
+array([[-1.03883666,  0.02088297,  0.00532339]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_47_2.png" alt="png"></p>
+<p>浮动仍然比较大，我们来尝试下对数据进行标准化<br>
+将数据按其属性(按列进行)减去其均值，然后除以其方差。最后得到的结果是，对每个属性/每列来说所有数据都聚集在0附近，方差值为1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing <span class="keyword">as</span> pp</span><br><span class="line"></span><br><span class="line">scaled_data = orig_data.copy()</span><br><span class="line">scaled_data[:, <span class="number">1</span>:<span class="number">3</span>] = pp.scale(orig_data[:, <span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">runExpe(scaled_data, theta, n, STOP_ITER, thresh=<span class="number">5000</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Scaled data - learning rate: 0.001 - Gradient descent - Stop: 5000 iterations
+Theta: [[0.3080807  0.86494967 0.77367651]] - Iter: 5000 - Last cost: 0.38 - Duration: 1.42s
+
+
+
+
+
+array([[0.3080807 , 0.86494967, 0.77367651]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_49_2.png" alt="png"></p>
+<p>它好多了！原始数据，只能达到达到0.61，而我们得到了0.38个在这里！<br>
+所以对数据做预处理是非常重要的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(scaled_data, theta, n, STOP_GRAD, thresh=<span class="number">0.02</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Scaled data - learning rate: 0.001 - Gradient descent - Stop: gradient norm &lt; 0.02
+Theta: [[1.0707921  2.63030842 2.41079787]] - Iter: 59422 - Last cost: 0.22 - Duration: 18.60s
+
+
+
+
+
+array([[1.0707921 , 2.63030842, 2.41079787]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_51_2.png" alt="png"></p>
+<p>更多的迭代次数会使得损失下降的更多！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theta = runExpe(scaled_data, theta, <span class="number">1</span>, STOP_GRAD, thresh=<span class="number">0.002</span>/<span class="number">5</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Scaled data - learning rate: 0.001 - Stochastic descent - Stop: gradient norm &lt; 0.0004
+Theta: [[1.14806246 2.79358835 2.56525695]] - Iter: 72580 - Last cost: 0.22 - Duration: 11.03s
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_53_1.png" alt="png"></p>
+<p>随机梯度下降更快，但是我们需要迭代的次数也需要更多，所以还是用batch的比较合适！！！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runExpe(scaled_data, theta, <span class="number">16</span>, STOP_GRAD, thresh=<span class="number">0.002</span>*<span class="number">2</span>, alpha=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>***Scaled data - learning rate: 0.001 - Mini-batch (16) descent - Stop: gradient norm &lt; 0.004
+Theta: [[1.15951073 2.81556145 2.58819778]] - Iter: 2120 - Last cost: 0.22 - Duration: 0.36s
+
+
+
+
+
+array([[1.15951073, 2.81556145, 2.58819778]])
+</code></pre>
+<p><img src="/2019/03/13/梯度下降求解逻辑回归/output_55_2.png" alt="png"></p>
+<h2><span id="精度">精度</span></h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设定阈值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(X, theta)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span> <span class="keyword">if</span> x &gt;= <span class="number">0.5</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> model(X, theta)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scaled_X = scaled_data[:, :<span class="number">3</span>]</span><br><span class="line">y = scaled_data[:, <span class="number">3</span>]</span><br><span class="line">predictions = predict(scaled_X, theta)</span><br><span class="line">correct = [<span class="number">1</span> <span class="keyword">if</span> ((a == <span class="number">1</span> <span class="keyword">and</span> b == <span class="number">1</span>) <span class="keyword">or</span> (a == <span class="number">0</span> <span class="keyword">and</span> b == <span class="number">0</span>)) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> (a, b) <span class="keyword">in</span> zip(predictions, y)]</span><br><span class="line">accuracy = (sum(map(int, correct)) % len(correct))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">'accuracy = &#123;0&#125;%'</span>.format(accuracy))</span><br></pre></td></tr></table></figure>
+<pre><code>accuracy = 89%
+</code></pre>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/03/08/线性回归/" data-toggle="tooltip" data-placement="top" title="【机器学习】线性回归">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://beantech.org" target="_blank">Bean Tech</a></li>
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">It Helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://www.theacademy.top/2019/03/13/梯度下降求解逻辑回归/";
+    var disqus_url = "http://www.theacademy.top/2019/03/13/梯度下降求解逻辑回归/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/NuageLee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/NuageLee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/NuageLee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Nuage 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.theacademy.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.theacademy.top/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

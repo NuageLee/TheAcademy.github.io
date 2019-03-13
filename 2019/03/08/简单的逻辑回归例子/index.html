@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          【机器学习】线性回归 - Nuage&#39;s Blog
+          【机器学习】简单的逻辑回归例子 - Nuage&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.theacademy.top/2019/03/08/线性回归/">
+    <link rel="canonical" href="http://www.theacademy.top/2019/03/08/简单的逻辑回归例子/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,8 +90,8 @@
                               <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
                             
                         </div>
-                        <h1>【机器学习】线性回归</h1>
-                        <h2 class="subheading">线性回归模型</h2>
+                        <h1>【机器学习】简单的逻辑回归例子</h1>
+                        <h2 class="subheading">逻辑回归模型</h2>
                         <span class="meta">
                             Posted by Nuage on
                             2019-03-08
@@ -211,113 +211,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="线性回归">线性回归</span></h1>
-<ul>
-<li>回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系；</li>
-<li>回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知函数</li>
-<li>按照输入变量的个数，可分为一元回归和多元回归</li>
-<li>按照输入变量和输出变量之间的类型，可分为线性回归和非线性回归</li>
-</ul>
-<blockquote>
-<p>一元回归： y = ax + b（线段公式）<br>
-<img src="/images/15520016074773.jpg" alt=""><br>
-多元回归<br>
-<img src="/images/15520016338399.jpg" alt=""><br>
-<img src="/images/15520016433177.jpg" alt=""></p>
-</blockquote>
-<h1><span id="回归问题求解">回归问题求解</span></h1>
-<h2><span id="函数模型model">函数模型（Model）</span></h2>
-<p>假设我们需要解决的问题为多元回归，有两个影响因子，我们则设这两个影响因子为theta1和theta2<br>
-<img src="/images/15519520899577.jpg" alt=""><br>
-用矩阵方法表示为：<br>
-<img src="/images/15519520987117.jpg" alt=""><br>
-theta1和theta2为权重参数，theta0为偏重参数。<br>
-对于数据中的每一个样本<br>
-<img src="/images/15520026630863.jpg" alt=""><br>
-前半部分为预测值，后半部分为误差<br>
-<strong>误差独立并且有相同的分布，服从均值为0方差为theta平方的高斯分布(正态分布)</strong></p>
-<blockquote>
-<p>独立是指每个信息都是独立的<br>
-同分布指这些独立的数据都出现在同一数据集中，可以理解为同一事件中独立的个体<br>
-符合高斯分布只是一种对普通事件的假设，因为大部分时间都符合高斯分布，并没有证明<br>
-<img src="/images/15519532069250.jpg" alt=""><br>
-高斯分布表达式：<br>
-<img src="/images/15520029252081.jpg" alt=""><br>
-将误差公式代入高斯分布<br>
-<img src="/images/15520029634073.jpg" alt=""><br>
-该表达式表示误差的分布</p>
-</blockquote>
-<h2><span id="极大似然估计">极大似然估计</span></h2>
-<p>似然函数表示，什么样的参数theta可以使得我们的预测值更接近真实值，因此我们希望<strong>似然函数的值越大越好</strong><br>
-<img src="/images/15520031281322.jpg" alt=""><br>
-由于似然函数中的乘法不好计算，我们通过对数函数将其转换为加法，转化为对数似然函数：<br>
-<img src="/images/15520032476932.jpg" alt=""><br>
-我们的目的是让似然函数越大越好（越大离真实值越接近），观察上式可知减号左边为恒正的，所以要让右半边式子越小越好。</p>
-<h2><span id="最小二乘法">最小二乘法、</span></h2>
-<p>让右半边的式子取最小值，刚好是最小二乘法的工作，得出这个结果，是因为之前我们假设误差项服从高斯分布导致的。<br>
-<img src="/images/15520034549348.jpg" alt=""></p>
-<h2><span id="求目标函数">求目标函数</span></h2>
-<p>有上式中我们可知，我们的目标是求出theta等于何值时，J(theta)的值最小，因此上式即为我们的目标函数</p>
-<blockquote>
-<p>目标函数<br>
-<img src="/images/15520035839352.jpg" alt=""><br>
-目标函数连续，theta一定为目标函数的<strong>驻点</strong>，因此我们求偏导寻找驻点：<br>
-<img src="/images/15520037299350.jpg" alt=""><br>
-为求theta最小值，求偏导，使得偏导等于0（为最小值点）（凸优化？？？）：<br>
-<img src="/images/15520043908211.jpg" alt=""><br>
-上面的式子有一个问题，如果X’X不可逆呢？<br>
-我们知道X’X是一个半正定矩阵，所以若X’X不可逆或为了防止过拟合，我们增加lambda扰动，得到：<br>
-<img src="/images/15520044555001.jpg" alt=""><br>
-这相当于给我们的线性回归增加了一个惩罚因子</p>
-</blockquote>
-<h2><span id="正则化">正则化</span></h2>
-<p>我们的数据一定是有干扰的，不正则化可能对于训练集表现良好，但对于新数据会产生很大的误差扰动（过拟合），例如如果数据中同时出现2和120的数值，那么模型会优先考虑120影响比较大。我们希望模型的扰动（theta值的分布）越小越好，L1和L2正则化都能防止过拟合，一般L2效果更好一些，L1能够产生稀疏模型，能够帮助我们去除某些特征，因此可以用于特征选择。<br>
-Skilearn库中有很好的正则化方法</p>
-<h3><span id="l1-normridge回归">L1-norm（Ridge回归）</span></h3>
-<p><img src="/images/15520045938615.jpg" alt=""></p>
-<h3><span id="l2-normlasso回归">L2-norm（Lasso回归）</span></h3>
-<p>loss+1/2w(2)</p>
-<h1><span id="模型评估">模型评估</span></h1>
-<p>最常用的评估方法：<br>
-<img src="/images/15519553586196.jpg" alt=""><br>
-残差就是指预测值和真实值的残差，残差肯定越小越好<br>
-R方的取值越接近1认为模型拟合的越好</p>
-<h1><span id="梯度下降算法">梯度下降算法</span></h1>
-<p>上式中我们已经得到目标函数，我们的目的在于求取使得J(theta)最小的theta，<br>
-线性回归的theta不一定可求，但是梯度下降的theta一定可求，因此我们利用梯度下降算法求解。<br>
-注：梯度就是偏导数<br>
-目标函数：<br>
-<img src="/images/15520034549348.jpg" alt=""><br>
-梯度下降：<br>
-初始化一个Theta（多使用随机初始化），让其沿着负梯度方向迭代，使得更新后的theta让J(theta)更小<br>
-<img src="/images/15520050901483.jpg" alt=""><br>
-其中alpha为学习速率<br>
-示意图：<br>
-<img src="/images/15520051006676.jpg" alt=""><br>
-具体求解：<br>
-<img src="/images/15520051544680.jpg" alt=""></p>
-<h2><span id="梯度下降方法">梯度下降方法</span></h2>
-<h3><span id="批量梯度下降">批量梯度下降</span></h3>
-<p>把所有样本都做梯度下降，容易得到最优解，但速度太慢<br>
-<img src="/images/15520544364254.jpg" alt=""></p>
-<h3><span id="随机梯度下降">随机梯度下降</span></h3>
-<ul>
-<li>每次找一个样本，迭代速度快，但不一定每次都朝着收敛的方向，但总体趋势是下降的；</li>
-<li>由于噪声的存在，随机梯度下降算法有利于跳出局部最小值<br>
-<img src="/images/15519621369828.jpg" alt=""></li>
-</ul>
-<h3><span id="小批量梯度下降mini-batch">小批量梯度下降（mini-batch）</span></h3>
-<p>每次更新选择一小部分数据，比较实用，一般为2的倍数32，64，128<br>
-<img src="/images/15519621536994.jpg" alt=""></p>
-<h2><span id="学习率learning-rate">学习率(Learning rate)</span></h2>
-<p>如何选择学习率：<br>
-递减学习率：<br>
-基本上都是0.01</p>
-<h2><span id="期望损失">期望损失</span></h2>
-<p>理论上模型关于自变量因变量的平均意义下的损失，学习的目标就是选择期望损失最小的模型</p>
-<h2><span id="经验风险">经验风险</span></h2>
-<p>模型关于训练样本集的平均损失。我们不可能得到所有的样本来计算期望损失，所以我们用经验风险（求平均）来代替期望损失</p>
-
+                
                 
 
                 <hr>
@@ -325,12 +219,12 @@ R方的取值越接近1认为模型拟合的越好</p>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/03/13/梯度下降求解逻辑回归/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
+                            <a href="/2019/03/08/逻辑回归/" data-toggle="tooltip" data-placement="top" title="【机器学习】逻辑回归">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/03/08/softmax/" data-toggle="tooltip" data-placement="top" title="【机器学习】多分类softmax分类器">Next Post &rarr;</a>
+                            <a href="/2019/02/22/pipenv/" data-toggle="tooltip" data-placement="top" title="【Python Flask】「一」项目初始化">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -360,7 +254,7 @@ R方的取值越接近1认为模型拟合的越好</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">线性回归</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">回归问题求解</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">函数模型（Model）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">极大似然估计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">最小二乘法、</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">求目标函数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">正则化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.1.</span> <span class="toc-nav-text">L1-norm（Ridge回归）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.2.</span> <span class="toc-nav-text">L2-norm（Lasso回归）</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型评估</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">梯度下降算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">梯度下降方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.1.</span> <span class="toc-nav-text">批量梯度下降</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.2.</span> <span class="toc-nav-text">随机梯度下降</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.3.</span> <span class="toc-nav-text">小批量梯度下降（mini-batch）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">学习率(Learning rate)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">期望损失</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">经验风险</span></a></li></ol></li></ol>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>
@@ -415,8 +309,8 @@ R方的取值越接近1认为模型拟合的越好</p>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://www.theacademy.top/2019/03/08/线性回归/";
-    var disqus_url = "http://www.theacademy.top/2019/03/08/线性回归/";
+    var disqus_identifier = "http://www.theacademy.top/2019/03/08/简单的逻辑回归例子/";
+    var disqus_url = "http://www.theacademy.top/2019/03/08/简单的逻辑回归例子/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

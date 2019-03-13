@@ -148,14 +148,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -212,7 +212,7 @@
                 post-container">
 
                 <h1><span id="逻辑回归">逻辑回归</span></h1>
-<p>逻辑回归是最经典的二分类的算法，首选分类算法为逻辑回归<br>
+<p>逻辑回归虽然也叫回归，但是却是一个分类模型。是最经典的二分类方法，一般拿到一个分类任务首先尝试的就是逻辑回归，再看其他方法是否比逻辑回归好。<br>
 逻辑回归的决策边界：可以是非线性的</p>
 <h1><span id="sigmoid函数">Sigmoid函数</span></h1>
 <p><img src="/images/15519629585071.jpg" alt=""><br>
@@ -223,13 +223,11 @@ sigmoid把任意的一个输入映射到一个0——1区间，转换为概率</
 <img src="/images/15519631353873.jpg" alt=""><br>
 其中<img src="/images/15519631555452.jpg" alt=""><br>
 如果做一个二分类任务：<br>
+<img src="/images/15524479855789.jpg" alt=""><br>
+对于y=1和y=0时：<br>
 <img src="/images/15519631777514.jpg" alt=""><br>
 整合：<br>
-<img src="/images/15519632262672.jpg" alt=""><br>
-当y=0时，<br>
-<img src="/images/15519632627455.jpg" alt=""><br>
-当y=1时：<br>
-<img src="/images/15519632729445.jpg" alt=""></p>
+<img src="/images/15519632262672.jpg" alt=""></p>
 <h1><span id="求解逻辑回归">求解逻辑回归</span></h1>
 <h2><span id="求解似然函数">求解似然函数</span></h2>
 <p><img src="/images/15519633319083.jpg" alt=""><br>
@@ -238,9 +236,11 @@ sigmoid把任意的一个输入映射到一个0——1区间，转换为概率</
 将其转换为梯度下降任务<br>
 求导过程：<br>
 <img src="/images/15519634451467.jpg" alt=""><br>
-对于x下表i，上表j，i表示第几个数据，j表示第几个theta</p>
+对于x下表i，上表j，i表示第几个数据，j表示第几个theta<br>
+所得结果为更新的方向</p>
 <h2><span id="参数更新">参数更新</span></h2>
-<p><img src="/images/15519637099116.jpg" alt=""></p>
+<p>有了更新方向，再乘以步长，便可对theta进行更新<br>
+<img src="/images/15519637099116.jpg" alt=""></p>
 <h2><span id="多分类的softmax">多分类的softmax</span></h2>
 <p><img src="/images/15519637228735.jpg" alt=""></p>
 
@@ -250,9 +250,13 @@ sigmoid把任意的一个输入映射到一个0——1区间，转换为概率</
                 <!-- Pager -->
                 <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/2019/03/08/信用卡欺诈案例/" data-toggle="tooltip" data-placement="top" title="【机器学习】Kaggle信用卡欺诈案例">&larr; Previous Post</a>
+                        </li>
+                    
                     
                         <li class="next">
-                            <a href="/2019/03/08/线性回归/" data-toggle="tooltip" data-placement="top" title="【机器学习】线性回归">Next Post &rarr;</a>
+                            <a href="/2019/03/08/简单的逻辑回归例子/" data-toggle="tooltip" data-placement="top" title="【机器学习】简单的逻辑回归例子">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
