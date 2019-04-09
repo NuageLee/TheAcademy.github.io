@@ -133,14 +133,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -210,6 +210,33 @@
 
 <div class="post-preview">
 
+    <a href="/2019/04/01/隐马尔科夫模型/">
+        <h2 class="post-title">
+            Untitled
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-04-01
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/03/18/洛克定律/">
         <h2 class="post-title">
             墨菲定律
@@ -245,15 +272,25 @@
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/信用卡欺诈案例/">
+    <a href="/2019/03/08/python文本挖掘/">
         <h2 class="post-title">
-            【机器学习】Kaggle信用卡欺诈案例
+            【机器学习】Python文本挖掘
         </h2>
         <h3 class="post-subtitle">
-            逻辑回归模型
+            文本分析
         </h3>
         <div class="post-content-preview">
-            ...
+            意义
+文本挖掘：从大量文本数据中抽取出有价值的知识，并且利用这些知识重新组织信息的过程。
+概念
+停用词
+停用词就是在每篇文章中都有的一些垃圾词汇和符号，从这些词中没法判断出有用数据
+
+词频(TF)
+某个词在文章中的出现次数/一共有多少词
+逆文档频率（IDF）
+IDF = log(语料库的文档总数/包含该词的文档数+1)
+逆文档频率用来衡量一个词是否为一篇文章独有的关键词，因此越高(log了)......
         </div>
     </a>
     
@@ -273,18 +310,22 @@
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/梯度下降求解逻辑回归/">
+    <a href="/2019/03/08/DBSCAN/">
         <h2 class="post-title">
-            【机器学习】简单的逻辑回归例子
+            【机器学习】聚类算法DBSCAN
         </h2>
         <h3 class="post-subtitle">
-            逻辑回归模型
+            文本分析
         </h3>
         <div class="post-content-preview">
-            Logistic Regression
-The data
-我们将建立一个逻辑回归模型来预测一个学生是否被大学录取。假设你是一个大学系的管理员，你想根据两次考试的结果来决定每个申请人的录取机会。你有以前的申请人的历史数据，你可以用它作为逻辑回归的训练集。对于每一个培训例子，你有两个考试的申请人的分数和录取决定。为了做到这一点，我们将建立一个分类模型，根据考试成绩估计入学概率。
-###首先导入p......
+            DBSCAN基本概念
+全程(Density-Based Spatial Clustering of Applications with Noise)
+基于密度，带有噪声点的分类方法
+
+核心对象：画个圈，若圈内某个点的密度达到算法设定的阈值(minPts)则为核心点
+邻域距离半径： 设定画圈的半径
+直接密度可达：p在点q的r邻域内，且q是核心点，则p-q直接密度可达
+密度可达：有一个点序列q0......
         </div>
     </a>
     
@@ -304,59 +345,22 @@ The data
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/线性回归/">
+    <a href="/2019/03/08/PCA主成分分析/">
         <h2 class="post-title">
-            【机器学习】线性回归
+            【机器学习】PCA主成分分析
         </h2>
         <h3 class="post-subtitle">
-            线性回归模型
+            文本分析
         </h3>
         <div class="post-content-preview">
-            线性回归
+            什么是PCA
+PCA是一种常用的降维算法，对比与LDA的有监督学习，PCA是一种无监督的学习方法，LDA将多维信息降维，而PCA直接对数据进行处理，基于方差，提取有用的信息
+基变换
 
-回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系；
-回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知函数
-按照输入变量的个数，可分为一元回归和多元回归
-按照输入变量和输出变量之间的类型，可分为线性回归和非线性回归
-
-
-一元回归： y = ax + b（线段公式）
-
-多元回归
-
-
-
-回归问题求解
-函数模型（Model）
-假设......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/03/08/softmax/">
-        <h2 class="post-title">
-            【机器学习】多分类softmax分类器
-        </h2>
-        <h3 class="post-subtitle">
-            逻辑回归模型
-        </h3>
-        <div class="post-content-preview">
-            ...
+两个矩阵相乘的意义是将右边矩阵中的每一列列向量变换到左边矩阵中每一行行向量为基所表示的空间中去
+PCA的核心原理就是基变换
+协方差矩阵
+变换方向：如何选择这个方向（基）才能尽量保留最多的原始信息，使得投影后的投......
         </div>
     </a>
     
@@ -426,25 +430,28 @@ The data
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/python文本挖掘/">
+    <a href="/2019/03/08/Tensorflow/">
         <h2 class="post-title">
-            【机器学习】Python文本挖掘
+            【机器学习】Tensorflow原理
         </h2>
         <h3 class="post-subtitle">
             文本分析
         </h3>
         <div class="post-content-preview">
-            意义
-文本挖掘：从大量文本数据中抽取出有价值的知识，并且利用这些知识重新组织信息的过程。
-概念
-停用词
-停用词就是在每篇文章中都有的一些垃圾词汇和符号，从这些词中没法判断出有用数据
+            架构
 
-词频(TF)
-某个词在文章中的出现次数/一共有多少词
-逆文档频率（IDF）
-IDF = log(语料库的文档总数/包含该词的文档数+1)
-逆文档频率用来衡量一个词是否为一篇文章独有的关键词，因此越高(log了)......
+基本要素
+##张量（Tensor）
+张量的维度表示为阶
+
+张量是流动的，组成图
+##图（Graph）
+图代表模型的数据流，由操作（ops）和张量（tensor）组成，op是节点，tensor是数据流，也就是边
+##会话（Session）
+所有对图的操作，都要放到会话中进行
+Tensorflow如何训练模型
+
+...
         </div>
     </a>
     
@@ -473,26 +480,10 @@ IDF = log(语料库的文档总数/包含该词的文档数+1)
         </h3>
         <div class="post-content-preview">
             逻辑回归
-逻辑回归虽然也叫回归，但是却是一个分类模型。是最经典的二分类方法，一般拿到一个分类任务首先尝试的就是逻辑回归，再看其他方法是否比逻辑回归好。
+线性回归中是描述因变量的期望与自变量之间的线性关系，回归通常指结果是一个值，而逻辑回归虽然也叫回归，但是却是一个分类模型。**实际上是通过Sigmoid函数将回归结果映射到0-1的区间。**是最经典的二分类方法，其结果是离散的，如：是，否。一般拿到一个分类任务首先尝试的就是逻辑回归，再看其他方法是否比逻辑回归好。
 逻辑回归的决策边界：可以是非线性的
 Sigmoid函数
-
-
-sigmoid把任意的一个输入映射到一个0——1区间，转换为概率
-公式
-预测函数
-
-其中
-如果做一个二分类任务：
-
-对于y=1和y=0时：
-
-整合：
-
-求解逻辑回归
-求解似然函数
-
-......
+二分类问题的......
         </div>
     </a>
     
@@ -512,40 +503,43 @@ sigmoid把任意的一个输入映射到一个0——1区间，转换为概率
 
 <div class="post-preview">
 
-    <a href="/2019/02/22/pipenv/">
+    <a href="/2019/03/08/Kmeans/">
         <h2 class="post-title">
-            【Python Flask】「一」项目初始化
+            【机器学习】聚类算法Kmeans
         </h2>
         <h3 class="post-subtitle">
-            穷查理宝典中对西塞罗部分摘抄
+            文本分析
         </h3>
         <div class="post-content-preview">
-            文档地址：https://docs.pipenv.org
-安装pipenv
-哈哈哈
-创建虚拟环境
-pip install
-pip graph查看安装的包
+            什么是聚类算法
+解决无监督问题，没有分类的标签，聚类则把相似的东西分到一组
+难点：
 
-pipenv --venv查看虚拟环境名字及路径
+没有办法基于预测值进行评估
+如何调参
 
-名字为： ginger-hCJj72z
-用pycharm打开genger文件夹
+K-Means
+基本概念
 
-pipfile里面记录了所有的安装的包
-新建入口文件
-ginger目录下新建ginger.py
-实例化f......
+K值：人为指定一个K值，将数据分类为K个堆
+质心：向量各维取平均值
+距离：每两个数据点之间的欧氏距离或余弦相似度（需要先标准化）
+优化目标：
+
+最外层表示有多少个蔟
+内层表示对于每一个簇的中心点，让每一个样本到重心点的距离越小越好
+
+K-M......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Nuage on
-            2019-02-22
+            2019-03-08
         </p>
         <div class="tags">
             
-              <a href="/tags/#后端" title="后端">后端</a>
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
             
         </div>
     
@@ -555,24 +549,38 @@ ginger目录下新建ginger.py
 
 <div class="post-preview">
 
-    <a href="/2019/02/22/贝叶斯算法/">
+    <a href="/2019/03/08/什么是NLP/">
         <h2 class="post-title">
-            【机器学习】贝叶斯算法
+            【机器学习】NLP基础
         </h2>
         <h3 class="post-subtitle">
-            决策树算法
+            文本分析
         </h3>
         <div class="post-content-preview">
-            什么是贝叶斯算法
-贝叶斯生前解决逆向概率问题
-其所发表论文&quot;An essay towards solving a problem in the doctrine of chances&quot;
-这个问题，简单概述来说，一个包里面有若干黑球和白球，但我们不知道数量，所以如果有人问从这个包里取出黑球的概率是多少？我们无法回答。贝叶斯所要解决的，就是通过不断尝试，来试图通过经验来估算这......
+            什么是NLP
+Natural Language Processing,让电脑懂人类的语言
+主要范畴：
+
+文本分析
+信息检索
+词性标注
+问答系统等
+
+NLP技术
+##词法分析
+###分词技术
+
+###词性标注
+为分词结果中每个词标注一个正确的词性的程序
+
+###命名实体识别
+NER，专门识别，识别文中拥有特定意义的实体，例如人名，地名，机构名，专有名词等。分为三大类（实体类，时间类和数字类）、......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Nuage on
-            2019-02-22
+            2019-03-08
         </p>
         <div class="tags">
             
@@ -620,15 +628,7 @@ ginger目录下新建ginger.py
     <div class="tags">
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="10">机器学习</a>
-            
-        
-            
-        
-            
-        
-            
-            <a href="/tags/#动保" title="动保" rel="2">动保</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="24">机器学习</a>
             
         
             
@@ -715,23 +715,23 @@ ginger目录下新建ginger.py
     <ul>
       
         <li>
+          <a href="/2019/04/01/隐马尔科夫模型/">(no title)</a>
+        </li>
+      
+        <li>
           <a href="/2019/03/18/洛克定律/">墨菲定律</a>
         </li>
       
         <li>
-          <a href="/2019/03/08/信用卡欺诈案例/">【机器学习】Kaggle信用卡欺诈案例</a>
+          <a href="/2019/03/08/python文本挖掘/">【机器学习】Python文本挖掘</a>
         </li>
       
         <li>
-          <a href="/2019/03/08/梯度下降求解逻辑回归/">【机器学习】简单的逻辑回归例子</a>
+          <a href="/2019/03/08/DBSCAN/">【机器学习】聚类算法DBSCAN</a>
         </li>
       
         <li>
-          <a href="/2019/03/08/线性回归/">【机器学习】线性回归</a>
-        </li>
-      
-        <li>
-          <a href="/2019/03/08/softmax/">【机器学习】多分类softmax分类器</a>
+          <a href="/2019/03/08/PCA主成分分析/">【机器学习】PCA主成分分析</a>
         </li>
       
     </ul>

@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -212,12 +212,10 @@
                 post-container">
 
                 <h1><span id="线性回归">线性回归</span></h1>
-<ul>
-<li>回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系；</li>
-<li>回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知函数</li>
-<li>按照输入变量的个数，可分为一元回归和多元回归</li>
-<li>按照输入变量和输出变量之间的类型，可分为线性回归和非线性回归</li>
-</ul>
+<pre><code>线性模型形式简单，易于建模，许多非线性模型都是在线性模型的基础上通过引入层级结构或高位映射得到。
+回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系，回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知函数。按照输入变量的个数，可分为一元回归和多元回归；按照输入变量和输出变量之间的类型，可分为线性回归和非线性回归。
+</code></pre>
+<p>只考虑一种变量的情况：</p>
 <blockquote>
 <p>一元回归： y = ax + b（线段公式）<br>
 <img src="/images/15520016074773.jpg" alt=""><br>
@@ -225,7 +223,7 @@
 <img src="/images/15520016338399.jpg" alt=""><br>
 <img src="/images/15520016433177.jpg" alt=""></p>
 </blockquote>
-<h1><span id="回归问题求解">回归问题求解</span></h1>
+<h1><span id="求解回归问题">求解回归问题</span></h1>
 <h2><span id="函数模型model">函数模型（Model）</span></h2>
 <p>假设我们需要解决的问题为多元回归，有两个影响因子，我们则设这两个影响因子为theta1和theta2<br>
 <img src="/images/15519520899577.jpg" alt=""><br>
@@ -234,13 +232,14 @@
 theta1和theta2为权重参数，theta0为偏重参数。<br>
 对于数据中的每一个样本<br>
 <img src="/images/15520026630863.jpg" alt=""><br>
-前半部分为预测值，后半部分为误差<br>
-<strong>误差独立并且有相同的分布，服从均值为0方差为theta平方的高斯分布(正态分布)</strong></p>
+上式中前半部分为预测值，后半部分为误差。其中<strong>误差独立并且有相同的分布，服从均值为0方差为theta平方的高斯分布(正态分布)</strong>。这一前提条件对于线性回归的求解非常重要，其中：</p>
+<ul>
+<li>独立是指每个信息都是独立的</li>
+<li>同分布指这些独立的数据都出现在同一数据集中，可以理解为同一事件中独立的个体</li>
+<li>符合高斯分布只是一种对普通事件的假设，因为大部分事件都符合高斯分布，并没有证明</li>
+</ul>
 <blockquote>
-<p>独立是指每个信息都是独立的<br>
-同分布指这些独立的数据都出现在同一数据集中，可以理解为同一事件中独立的个体<br>
-符合高斯分布只是一种对普通事件的假设，因为大部分时间都符合高斯分布，并没有证明<br>
-<img src="/images/15519532069250.jpg" alt=""><br>
+<p><img src="/images/15519532069250.jpg" alt=""><br>
 高斯分布表达式：<br>
 <img src="/images/15520029252081.jpg" alt=""><br>
 将误差公式代入高斯分布<br>
@@ -248,16 +247,28 @@ theta1和theta2为权重参数，theta0为偏重参数。<br>
 该表达式表示误差的分布</p>
 </blockquote>
 <h2><span id="极大似然估计">极大似然估计</span></h2>
-<p>似然函数表示，什么样的参数theta可以使得我们的预测值更接近真实值，因此我们希望<strong>似然函数的值越大越好</strong><br>
+<h3><span id="什么是似然">什么是似然</span></h3>
+<p>在统计学中，似然函数（likelihood function，通常简写为likelihood，似然）是一个非常重要的内容，在非正式场合似然和概率（Probability）几乎是一对同义词，但是在统计学中似然和概率却是两个不同的概念。概率是在特定环境下某件事情发生的可能性，也就是结果没有产生之前依据环境所对应的参数来预测某件事情发生的可能性，比如抛硬币，抛之前我们不知道最后是哪一面朝上，但是根据硬币的性质我们可以推测任何一面朝上的可能性均为50%，这个概率只有在抛硬币之前才是有意义的，抛完硬币后的结果便是确定的；而似然刚好相反，<strong>是在确定的结果下去推测产生这个结果的可能环境（参数）</strong>，还是抛硬币的例子，假设我们随机抛掷一枚硬币1,000次，结果500次人头朝上，500次数字朝上（实际情况一般不会这么理想，这里只是举个例子），我们很容易判断这是一枚标准的硬币，两面朝上的概率均为50%，这个过程就是我们根据结果来判断这个事情本身的性质（参数），也就是似然。如一件事情发生的概率为P(X|theta)，用似然表示则为L(theta|X)<br>
+在线性回归中，我们有了目标函数，似然函数的目的是求得什么样的参数theta可以使得我们的预测值更接近真实值，因此我们希望<strong>似然函数的值越大越好</strong>，既相似度越高越好。</p>
+<h3><span id="求解似然函数">求解似然函数</span></h3>
+<p>似然函数的求解很简单，令其偏导数为零即可得到其最大值。我们的求解是在目标函数满足高斯分布的条件下进行的，因此将高斯函数代入：<br>
 <img src="/images/15520031281322.jpg" alt=""><br>
-由于似然函数中的乘法不好计算，我们通过对数函数将其转换为加法，转化为对数似然函数：<br>
+由于似然函数中对多项式的连乘的求导非常复杂，因此通过对数函数将其转换为加法，转化为对数似然函数：<br>
 <img src="/images/15520032476932.jpg" alt=""><br>
 我们的目的是让似然函数越大越好（越大离真实值越接近），观察上式可知减号左边为恒正的，所以要让右半边式子越小越好。</p>
 <h2><span id="最小二乘法">最小二乘法、</span></h2>
-<p>让右半边的式子取最小值，刚好是最小二乘法的工作，得出这个结果，是因为之前我们假设误差项服从高斯分布导致的。<br>
+<p>让右半边的式子取最小值，刚好是最小二乘法的工作。所谓最小二乘，其实也可以叫做最小平方和，其目的就是通过最小化误差的平方和，使得拟合对象无限接近目标对象。换句话说，最小二乘法可以用于对函数的拟合。</p>
+<p>最小二乘法公式：<br>
+<img src="/images/15541969638661.jpg" alt=""><br>
+在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到直线的欧几里得距离之和最小。</p>
+<p>假设有一条直线y=ax+by=ax+b，要在这条直线上找到一点，距离(x0,y0)(x0,y0)这个点的距离最短。如果用绝对值的方法寻找，也就是取min(|y−y0|+|x−x0|)min(|y−y0|+|x−x0|)，由于绝对值最小为0，所以最小的情况就是x=x0x=x0或者y=y0y=y0处，如下图1所示<br>
+<img src="/images/15541973861881.jpg" alt=""></p>
+<p>如果用平方和的方法寻找，就是取min(y−y0)2+(x−x0)2，可以看出该式是两点间距离公式，也就是距离的概念。那么最短的距离，就是点到直线的垂线.<br>
+<img src="/images/15541974433863.jpg" alt=""><br>
+通过最小二乘法得到损失函数（loss function）:<br>
 <img src="/images/15520034549348.jpg" alt=""></p>
 <h2><span id="求目标函数">求目标函数</span></h2>
-<p>有上式中我们可知，我们的目标是求出theta等于何值时，J(theta)的值最小，因此上式即为我们的目标函数</p>
+<p>上一步得到了模型的目标函数，我们的目的是求得theta使得目标函数的值最小</p>
 <blockquote>
 <p>目标函数<br>
 <img src="/images/15520035839352.jpg" alt=""><br>
@@ -265,18 +276,30 @@ theta1和theta2为权重参数，theta0为偏重参数。<br>
 <img src="/images/15520037299350.jpg" alt=""><br>
 为求theta最小值，求偏导，使得偏导等于0（为最小值点）（凸优化？？？）：<br>
 <img src="/images/15520043908211.jpg" alt=""><br>
-上面的式子有一个问题，如果X’X不可逆呢？<br>
-我们知道X’X是一个半正定矩阵，所以若X’X不可逆或为了防止过拟合，我们增加lambda扰动，得到：<br>
+上面的式子有一个问题，如果XTX不可逆，即XTX不满秩时，theta无唯一解。<br>
+我们知道X’X是一个半正定矩阵，所以若X’X不可逆或为了防止过拟合，我们增加lambda扰动，得到，使原先无法求广义逆的情况变成可以求出其广义逆。<br>
 <img src="/images/15520044555001.jpg" alt=""><br>
-这相当于给我们的线性回归增加了一个惩罚因子</p>
+此时对应的损失函数为：<br>
+<img src="/images/15541977689069.jpg" alt=""><br>
+公式的后半部分为惩罚项</p>
 </blockquote>
 <h2><span id="正则化">正则化</span></h2>
-<p>我们的数据一定是有干扰的，不正则化可能对于训练集表现良好，但对于新数据会产生很大的误差扰动（过拟合），例如如果数据中同时出现2和120的数值，那么模型会优先考虑120影响比较大。我们希望模型的扰动（theta值的分布）越小越好，L1和L2正则化都能防止过拟合，一般L2效果更好一些，L1能够产生稀疏模型，能够帮助我们去除某些特征，因此可以用于特征选择。<br>
-Skilearn库中有很好的正则化方法</p>
+<p>正则化可以非常有效的防止模型过拟合，流行的解释有两种：</p>
+<ol>
+<li>模型过于复杂是因为模型尝试去兼顾各个测试数据点，导致模型如下图：<img src="/images/15541992862184.jpg" alt=""><br>
+处于一种震荡的状态，这就意味着要对theta值进行限制，让他只在某个区间内震荡。</li>
+<li>从贝叶斯的角度分析，正则化是给模型添加了一个先验知识（其实也是一种区间限制）其中L1是拉普拉斯先验，L2是高斯先验。</li>
+</ol>
 <h3><span id="l1-normridge回归">L1-norm（Ridge回归）</span></h3>
-<p><img src="/images/15520045938615.jpg" alt=""></p>
+<p><img src="/images/15541994378889.jpg" alt=""><br>
+L1 正则化限定了w 的有效区域是一个正方形，是的theta在梯度下降过程中“走”的区域不会超过正方形区域<br>
+<img src="/images/15541995427667.jpg" alt=""></p>
 <h3><span id="l2-normlasso回归">L2-norm（Lasso回归）</span></h3>
-<p>loss+1/2w(2)</p>
+<p><img src="/images/15541994266875.jpg" alt=""><br>
+L2 正则化的限行区域为圆形<br>
+<img src="/images/15541995129698.jpg" alt=""></p>
+<h3><span id="正则化参数lamda">正则化参数lamda</span></h3>
+<p>正则化中，有一个参数lamda，lamda小，则上面的圆大，lamda大，则上面的圆小，lamda太大（圆小）则正则化失效，lamda太小（圆大）则模型会欠拟合。</p>
 <h1><span id="模型评估">模型评估</span></h1>
 <p>最常用的评估方法：<br>
 <img src="/images/15519553586196.jpg" alt=""><br>
@@ -285,11 +308,15 @@ R方的取值越接近1认为模型拟合的越好</p>
 <h1><span id="梯度下降算法">梯度下降算法</span></h1>
 <p>上式中我们已经得到目标函数，我们的目的在于求取使得J(theta)最小的theta，<br>
 线性回归的theta不一定可求，但是梯度下降的theta一定可求，因此我们利用梯度下降算法求解。<br>
-注：梯度就是偏导数<br>
+梯度就是偏导，梯度下降算法会在每一步走完后，计算对应位置的偏导数，然后沿着梯度（变化最快的方向）相反的方向前进总是春之余等高线。</p>
+<p>梯度下降算法对于像残差平方函数或成本函数这种凹函数，可以找到其全局最优解，但是对于存在波峰和波谷的函数，只能找到局部最优解</p>
+<h2><span id="学习率补偿">学习率（补偿）</span></h2>
+<p>步长alpha是机器学习中的一个重要参数，只管来讲就是梯度下降算法每一步有多大，如果alpha太大，则容易欠拟合，因此小一点虽然会导致计算量的增加，但是训练结果不会有太大问题，在实际操作中一般用经验值来实验，如0.01，0.03，0.1，0.3<br>
 目标函数：<br>
 <img src="/images/15520034549348.jpg" alt=""><br>
 梯度下降：<br>
 初始化一个Theta（多使用随机初始化），让其沿着负梯度方向迭代，使得更新后的theta让J(theta)更小<br>
+theta迭代公式：<br>
 <img src="/images/15520050901483.jpg" alt=""><br>
 其中alpha为学习速率<br>
 示意图：<br>
@@ -330,7 +357,7 @@ R方的取值越接近1认为模型拟合的越好</p>
                     
                     
                         <li class="next">
-                            <a href="/2019/03/08/softmax/" data-toggle="tooltip" data-placement="top" title="【机器学习】多分类softmax分类器">Next Post &rarr;</a>
+                            <a href="/2019/03/08/线性判别分析/" data-toggle="tooltip" data-placement="top" title="【机器学习】线性判别分析LDA">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -360,7 +387,7 @@ R方的取值越接近1认为模型拟合的越好</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">线性回归</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">回归问题求解</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">函数模型（Model）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">极大似然估计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">最小二乘法、</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">求目标函数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">正则化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.1.</span> <span class="toc-nav-text">L1-norm（Ridge回归）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.2.</span> <span class="toc-nav-text">L2-norm（Lasso回归）</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型评估</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">梯度下降算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">梯度下降方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.1.</span> <span class="toc-nav-text">批量梯度下降</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.2.</span> <span class="toc-nav-text">随机梯度下降</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.3.</span> <span class="toc-nav-text">小批量梯度下降（mini-batch）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">学习率(Learning rate)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">期望损失</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">经验风险</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">线性回归</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">求解回归问题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">函数模型（Model）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">极大似然估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">什么是似然</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">求解似然函数</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">最小二乘法、</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">求目标函数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">正则化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.1.</span> <span class="toc-nav-text">L1-norm（Ridge回归）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.2.</span> <span class="toc-nav-text">L2-norm（Lasso回归）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.5.3.</span> <span class="toc-nav-text">正则化参数lamda</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型评估</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">梯度下降算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">学习率（补偿）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">梯度下降方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.2.1.</span> <span class="toc-nav-text">批量梯度下降</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.2.2.</span> <span class="toc-nav-text">随机梯度下降</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.2.3.</span> <span class="toc-nav-text">小批量梯度下降（mini-batch）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">学习率(Learning rate)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">期望损失</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">经验风险</span></a></li></ol></li></ol>
         
         </div>
       </aside>

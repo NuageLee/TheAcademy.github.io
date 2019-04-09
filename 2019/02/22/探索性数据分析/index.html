@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          【数据科学】探索性数据分析 - Nuage&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.theacademy.top/2019/02/22/探索性数据分析/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('Demo.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                            
+                        </div>
+                        <h1>【数据科学】探索性数据分析</h1>
+                        <h2 class="subheading">面向数据科学家的实用统计学</h2>
+                        <span class="meta">
+                            Posted by Nuage on
+                            2019-02-22
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Academy</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1><span id="结构化数据的分类">结构化数据的分类</span></h1>
+<p>机构化数据可分为<strong>数值型数据</strong>和<strong>分类数据</strong>两类，对于数据科学家来说一定要将数据先做分类，为下面的数据清理工作打下基础。</p>
+<h2><span id="连续型数值数据">连续型数值数据</span></h2>
+<p>如风速、持续时间等</p>
+<h2><span id="离散型数值数据">离散型数值数据</span></h2>
+<p>某一事件的发生次数</p>
+<h2><span id="分类数据">分类数据</span></h2>
+<p>分类数据主要可分为<strong>二元数据</strong>和<strong>有序数据</strong>，二元数据：例如取值为0或1，true或false等；有序数据：例如数值排序1、2、3、4、5。</p>
+<h2><span id="拓展">拓展</span></h2>
+<ul>
+<li>了解R语言的数据分类方式</li>
+<li>学习SQL数据库</li>
+</ul>
+<h1><span id="矩形数据">矩形数据</span></h1>
+<p>矩形数据就是所谓的表结构数据，表中每一行为一个样本（记录），每一列为一种特征（变量）。</p>
+<h2><span id="python中的矩形数据">Python中的矩形数据</span></h2>
+<p>Python中的矩形数据主要靠Pandas库来读取，在Pandas中为DataFrame对象。</p>
+<h2><span id="r中的矩形数据">R中的矩形数据</span></h2>
+<p>R中的矩形数据为data.frame对象</p>
+<h2><span id="一些非矩形数据结构">一些非矩形数据结构</span></h2>
+<p>数据大部分都是矩形数据结构，但是还是存在一些非矩形结构，主要有时间数据、空间数据、图形三种。</p>
+<h3><span id="时间数据">时间数据</span></h3>
+<p>时间数据记录了对同一目标的连续测量值。在物联网数据中站主要比例。</p>
+<h3><span id="空间数据">空间数据</span></h3>
+<p>坐标数据，比矩形结构更加复杂</p>
+<h3><span id="图形">图形</span></h3>
+<p>用于表示物理上的、社交网络上的抽象关系</p>
+<h2><span id="拓展">拓展</span></h2>
+<ul>
+<li>R语言中的data.frame</li>
+<li>DataFrame对象</li>
+</ul>
+<h1><span id="位置估计">位置估计</span></h1>
+<p>探索数据的一个基本步骤，就是获取每一特征的<strong>典型值</strong>，也就是对数据最常出现的位置进行估计，即判断数据的集中趋势。</p>
+<h1><span id="基本位置估计方法">基本位置估计方法</span></h1>
+<p>对于特征样本中位置的估计，大体有均值和中值两种方式以及他们的各种变体。<br>
+##均值</p>
+<h3><span id="基本均值">基本均值</span></h3>
+<p>没有必要解释了。。。<br>
+<img src="/images/15546954685126.jpg" alt=""></p>
+<h3><span id="切尾均值">切尾均值</span></h3>
+<p>在数据（有序的）两端取出一定的数据，计算剩余数据的均值，这样可以消除极值对数据的影响。例如，去掉一组数据中P个最大值和P个最小值的切尾均值的公式为：<br>
+<strong>切尾均值</strong>公式</p>
+<h3><span id="加权均值">加权均值</span></h3>
+<p>在计算均值的时候，将每个值乘以一个权重W并将加权值的总和除以权重的总和：<br>
+<strong>加权均值公式</strong><br>
+使用加权均值可以处理更<strong>多变</strong>或<strong>准确定</strong>不高的数据，可以给这些异变的样本点较低的权重。</p>
+<h2><span id="中位数">中位数</span></h2>
+<p>使用中位数进行位置确定的原因是对于一些数据来说均值对<strong>离群值</strong>更敏感，比如一个区域的收入估计，如果这个区域中住着比尔盖茨或者巴菲特，则中值则更<strong>稳健</strong>，切尾均值也可以达到同样的效果。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">state &lt;- read.csv(file=<span class="string">"/Users/NuageLee/state.csv"</span>)</span><br><span class="line">mean(state[[<span class="string">"Population"</span>]])</span><br><span class="line">[<span class="number">1</span>] <span class="number">6162876</span></span><br><span class="line">mean(state[[<span class="string">"Population"</span>]], trim=<span class="number">0.1</span>)//前后切除<span class="number">10</span>%</span><br><span class="line">[<span class="number">1</span>] <span class="number">4783697</span></span><br><span class="line">median(state[[<span class="string">"Population"</span>]])</span><br><span class="line">[<span class="number">1</span>] <span class="number">4436370</span></span><br><span class="line">weighted.mean(state[[<span class="string">"Population"</span>]], w=state[[<span class="string">"Population"</span>]])//加权均值</span><br><span class="line">[<span class="number">1</span>] <span class="number">4.445834</span></span><br><span class="line">weightedMedian(state[[<span class="string">"Population"</span>]], w=state[[<span class="string">"Population"</span>]])</span><br><span class="line">[<span class="number">1</span>] <span class="number">4.4</span></span><br></pre></td></tr></table></figure>
+<h1><span id="变异性估计">变异性估计</span></h1>
+<p>位置只是总结特性的一个维度，另一个维度是变异性(variability),也称离差(dispersion)。它测量了数据集是紧密聚集的还是离散的。<br>
+变异性是统计学的一个核心概念，统计学关注：</p>
+<ul>
+<li>如何测量变异性</li>
+<li>如何降低变异性</li>
+<li>如何识别变异性中的随机性</li>
+<li>如何识别真是变异性的各种来源</li>
+<li>如何在存在变异性的情况下作出决策</li>
+</ul>
+<h2><span id="基于偏差的变异性估计">基于偏差的变异性估计</span></h2>
+<p>栗子：给定依据数据集[1,4,4]，则</p>
+<ul>
+<li>均值=3</li>
+<li>中值=4<br>
+则</li>
+<li>均值偏差为[1-3,4-3,4-3]</li>
+<li>中值偏差为[1-4,4-4,4-4]</li>
+</ul>
+<p>这些偏差说明了数据围绕均值/中值的分散程度</p>
+<h3><span id="平均绝对偏差">平均绝对偏差</span></h3>
+<p><strong>变异性的测量就是估计这些偏差的典型值。</strong><br>
+单纯的相加是没有意义的，因为和总为零。因此引入了平均绝对偏差<br>
+<strong>平均绝对偏差公式</strong></p>
+<h3><span id="方差">方差</span></h3>
+<p>方差和标准差是最广为人知的变异性估计量，他们都是基于偏差的平方。<br>
+方差是偏差平方的均值<br>
+<strong>方差公式</strong><br>
+###标准差<br>
+标准差是方差的平方根<br>
+<strong>标准差公式</strong><br>
+标准差在机器学习中用的更普遍，因为从数学角度看，使用平方值要比使用绝对值更方便。<br>
+###中位数绝对偏差<br>
+中位数绝对偏差(MAD)是一种稳健(对于离群点)的变异性估计量，公式为：<br>
+<strong>MAD公式</strong></p>
+<h3><span id="上述四种变异性估计的总结">上述四种变异性估计的总结</span></h3>
+<p>即时数据负荷正态分布，上述四种变异性估计也不尽相同，标准差总是大于平均绝对偏差，平均绝对偏差总是大于中位数偏差</p>
+<h2><span id="基于百分位数的变异性估计">基于百分位数的变异性估计</span></h2>
+<p>另一种估计方式是查看有序数据的分布，称为<strong>极差</strong>，即数据最大值与最小值之间的差。<br>
+极差对离群点很敏感。为了避免这一点，我们可以先删除两端的10%。<br>
+寻找百分位数首先要对数据进行排序，然后找到各个阶段的百分位数，一种常用的方法是寻找<strong>四分位距</strong>。</p>
+<p>四分位距=75百分位数-25百分位数</p>
+<h2><span id="使用r语言计算">使用R语言计算</span></h2>
+<p>使用R语言分别计算标准差、四分位距、中位数绝对偏差</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sd(state[[<span class="string">"Population"</span>]])</span><br><span class="line">[<span class="number">1</span>] <span class="number">6848235</span></span><br><span class="line">IQR(state[[<span class="string">"Population"</span>]])</span><br><span class="line">[<span class="number">1</span>] <span class="number">4847308</span></span><br><span class="line">mad(state[[<span class="string">"Population"</span>]])</span><br><span class="line">[<span class="number">1</span>] <span class="number">3849870</span></span><br></pre></td></tr></table></figure>
+<h1><span id="探索数据分布">探索数据分布</span></h1>
+<h2><span id="箱线图">箱线图</span></h2>
+<p>箱线图是百分位数的可视化图，在R中：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot(state[[<span class="string">"Population"</span>]]/<span class="number">1000000</span>, ylab=<span class="string">"Population(millions)"</span>)</span><br></pre></td></tr></table></figure>
+<p>图中</p>
+<ul>
+<li>箱体的中间线为中值</li>
+<li>上线段为75百分位数</li>
+<li>下边界为25百分位数</li>
+<li>虚线(whisker)表示的是极值区间<br>
+<img src="/images/15547854375291.jpg" alt=""></li>
+</ul>
+<h2><span id="频数表和直方图">频数表和直方图</span></h2>
+<p>变量的频数表将该变量的<strong>极差</strong>均匀地分割为多个等距分段，并给出落在每个分段中的数值个数。在R中：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">breaks &lt;- seq(from=min(state[[<span class="string">"Population"</span>]]), to=max(state[[<span class="string">"Population"</span>]]</span><br><span class="line">), length=<span class="number">11</span>)</span><br><span class="line"></span><br><span class="line">pop_freq &lt;- cut(state[[<span class="string">"Population"</span>]], breaks=breaks, right=<span class="literal">TRUE</span>, include.lowest=<span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line">table(pop_freq)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15547858573983.jpg" alt=""><br>
+直方图是频数表的一种可视化方法，x轴为组距，y为数据的计数。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hist(state[[<span class="string">"Population"</span>]], breaks=breaks)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15547859496398.jpg" alt=""></p>
+<h3><span id="统计学中的矩">统计学中的矩</span></h3>
+<ul>
+<li>一阶矩：位置</li>
+<li>二阶矩：变异性</li>
+<li>三阶矩：偏度，数据偏向较小值还是较大值</li>
+<li>四阶矩：峰度，数据中具有极值的倾向</li>
+</ul>
+<h2><span id="密度估计">密度估计</span></h2>
+<p>密度估计是直方图平滑后的曲线</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hist(state[[<span class="string">"Murder.Rate"</span>]], freq=<span class="literal">FALSE</span>)</span><br><span class="line">lines(density(state[[<span class="string">"Murder.Rate"</span>]]), lwd=<span class="number">3</span>, col=<span class="string">"blue"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15547867706320.jpg" alt=""></p>
+<h1><span id="探索二元数据和分类数据">探索二元数据和分类数据</span></h1>
+<h2><span id="条形图">条形图</span></h2>
+<p>在数据科学中最常用的图</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">barplot(as.matrix(dfw)/<span class="number">6</span>, cex.axis=<span class="number">.5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15547867889861.jpg" alt=""></p>
+<h2><span id="饼状图">饼状图</span></h2>
+<p>很少使用，不直观</p>
+<h2><span id="众数">众数</span></h2>
+<p>指数据中出现最频繁的一个或一组数值</p>
+<h2><span id="期望值">期望值</span></h2>
+<p>期望值是一种加权均值，权重使用的是类别出现的概率<br>
+计算步骤如下：</p>
+<ul>
+<li>输出值 x 输出值出现的概率</li>
+<li>将这些值加起来</li>
+</ul>
+<h1><span id="相关性">相关性</span></h1>
+<ul>
+<li>正相关：变量X的高值随变量Y的高值变化而变化</li>
+<li>负相关：变量X的高值随变量Y的低值变化而变化</li>
+</ul>
+<h2><span id="相关系数皮尔逊相关系数">相关系数（皮尔逊相关系数）</span></h2>
+<p>相关系数用于给出了两个特征之间相关性的估计值<br>
+<img src="/images/15547874480318.jpg" alt=""><br>
+可绘制相关性图标来查看各个变量之间的相关性，在R语言中使用corrplt包来绘制<br>
+<img src="/images/15547876756767.jpg" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">etfs &lt;- sp500_px[row.names(sp500_px)&gt;<span class="string">"2012-07-01"</span>, sp500_sym[sp500_sym$setor==<span class="string">"etf"</span>, <span class="string">'symbol'</span>]]</span><br><span class="line"><span class="keyword">library</span>(corrplot)</span><br><span class="line">corrplot(cor(etfs), method=<span class="string">"ellipse"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15547876901846.jpg" alt=""></p>
+<ul>
+<li>椭圆长轴偏向右方表示正相关，反之表示负相关</li>
+<li>更细长、颜色更深，关联性越强<br>
+##散点图<br>
+数据科学中最常用的图：</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(telecom$<span class="literal">T</span>, telecom$VZ, xlab=<span class="string">'T'</span>, ylab=<span class="string">'VZ'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15547879627903.jpg" alt=""></p>
+<h1><span id="探索两个及以上变量">探索两个及以上变量</span></h1>
+<p>均值、方差等上述的描述信息，一次只针对一个特征，这种分析方式成为单变量分析，相关性分析等则为双变量分析。</p>
+<h2><span id="六边形图和等势线">六边形图和等势线</span></h2>
+<h2><span id="两个分类变量">两个分类变量</span></h2>
+<h2><span id="分类数据和数值型数据">分类数据和数值型数据</span></h2>
+<h2><span id="多变量的可视化">多变量的可视化</span></h2>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/02/22/pipenv/" data-toggle="tooltip" data-placement="top" title="【Python Flask】环境安装">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/02/22/集成算法/" data-toggle="tooltip" data-placement="top" title="【机器学习】集成算法">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">结构化数据的分类</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">连续型数值数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">离散型数值数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">分类数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">拓展</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">矩形数据</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Python中的矩形数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">R中的矩形数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">一些非矩形数据结构</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">时间数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">空间数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">图形</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">拓展</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">位置估计</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">基本位置估计方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.0.1.</span> <span class="toc-nav-text">基本均值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.0.2.</span> <span class="toc-nav-text">切尾均值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.0.3.</span> <span class="toc-nav-text">加权均值</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">中位数</span></a></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">变异性估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">基于偏差的变异性估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.1.</span> <span class="toc-nav-text">平均绝对偏差</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.2.</span> <span class="toc-nav-text">方差</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.3.</span> <span class="toc-nav-text">上述四种变异性估计的总结</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">基于百分位数的变异性估计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">使用R语言计算</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">探索数据分布</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">箱线图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">频数表和直方图</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.2.1.</span> <span class="toc-nav-text">统计学中的矩</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">密度估计</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">探索二元数据和分类数据</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">条形图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">饼状图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">众数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.4.</span> <span class="toc-nav-text">期望值</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">相关性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">相关系数（皮尔逊相关系数）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">探索两个及以上变量</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.1.</span> <span class="toc-nav-text">六边形图和等势线</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.2.</span> <span class="toc-nav-text">两个分类变量</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.3.</span> <span class="toc-nav-text">分类数据和数值型数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.4.</span> <span class="toc-nav-text">多变量的可视化</span></a></li></ol></li>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://beantech.org" target="_blank">Bean Tech</a></li>
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">It Helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://www.theacademy.top/2019/02/22/探索性数据分析/";
+    var disqus_url = "http://www.theacademy.top/2019/02/22/探索性数据分析/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/NuageLee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/NuageLee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/NuageLee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Nuage 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.theacademy.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.theacademy.top/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

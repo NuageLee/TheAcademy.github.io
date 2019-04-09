@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          【Python Flask】「一」项目初始化 - Nuage&#39;s Blog
+          【Python Flask】环境安装 - Nuage&#39;s Blog
         
     </title>
 
@@ -90,7 +90,7 @@
                               <a class="tag" href="/tags/#后端" title="后端">后端</a>
                             
                         </div>
-                        <h1>【Python Flask】「一」项目初始化</h1>
+                        <h1>【Python Flask】环境安装</h1>
                         <h2 class="subheading">穷查理宝典中对西塞罗部分摘抄</h2>
                         <span class="meta">
                             Posted by Nuage on
@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -212,50 +212,26 @@
                 post-container">
 
                 <p>文档地址：<a href="https://docs.pipenv.org" target="_blank" rel="noopener">https://docs.pipenv.org</a></p>
-<h1><span id="安装pipenv">安装pipenv</span></h1>
-<p>哈哈哈</p>
-<h1><span id="创建虚拟环境">创建虚拟环境</span></h1>
-<p><code>pip install</code><br>
-<code>pip graph</code>查看安装的包<br>
-<img src="/images/15516182875078.jpg" alt=""><br>
-<code>pipenv --venv</code>查看虚拟环境名字及路径<br>
-<img src="/images/15516183685436.jpg" alt=""><br>
-名字为： ginger-hCJj72z<br>
-用pycharm打开genger文件夹<br>
-<img src="/images/15516185441408.jpg" alt=""><br>
-pipfile里面记录了所有的安装的包</p>
-<h1><span id="新建入口文件">新建入口文件</span></h1>
-<p><a href="http://xn--gingerginger-ox4ss01q7db293d450e.py" target="_blank" rel="noopener">ginger目录下新建ginger.py</a></p>
-<h2><span id="实例化flask对象">实例化flask对象</span></h2>
-<p>新建python包,命名为app，<a href="http://xn--pythonapp-zb6n54fd92bwhx84umra5474d.py" target="_blank" rel="noopener">在下面新建python文件app.py</a>，这里存放一切初始化操作，使项目有良好的扩展性<br>
-设置setting文件存放设置<br>
-设置secure文件存放敏感信息<br>
-将app.py指向上面两个文件，<br>
-在ginger.py里面调用app.py后，<a href="http://xn--ginger-og4j14h.py" target="_blank" rel="noopener">启动ginger.py</a><br>
-<img src="/images/15516198251491.jpg" alt=""><br>
-打开Postman测试：<br>
-<img src="/images/15516199818676.jpg" alt=""><br>
-增加视图函数</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#视图函数</span></span><br></pre></td></tr></table></figure>
-<p>@app.route(’/v1/user/get’)<br>
-def get_user():<br>
-	return ‘Hello’</p>
-<p>@app.route(’/v1/book/get’)<br>
-def get_book():<br>
-	return ‘get book’</p>
-<pre><code>![](/images/15516202363153.jpg)
-拆分视图函数，将上面两个视图函数分别放到两个文件中：
-新建包，命名为api，在api中新建包命名为v1,v1为版本号:
-![](/images/15516206264358.jpg)
-这时入口文件中拿不到app文件，怎么办：
-## 蓝图
-但是蓝图更适合模块级别的分化
-不适合视图级别的分化
-## 构建自定义对象
-![](/images/15516223110086.jpg)
-蓝图的架构在红图之上
-
-</code></pre>
+<h1><span id="安装pipenv虚拟环境">安装pipenv虚拟环境</span></h1>
+<h2><span id="安装pipenv">安装pipenv</span></h2>
+<p><code>pip install --user pipenv</code><br>
+查找系统中python的位置<br>
+<code>python3 -m site</code><br>
+找到USER_BASE后面的地址<br>
+<img src="/images/15536002968458.jpg" alt=""><br>
+修改好后<br>
+<code>source ~/.bash_profile</code></p>
+<h2><span id="创建虚拟环境这个虚拟环境和项目绑定">创建虚拟环境(这个虚拟环境和项目绑定)</span></h2>
+<p>在项目文件夹中：<br>
+<code>pipenv install</code><br>
+<img src="/images/15536015365815.jpg" alt=""><br>
+进入虚拟环境<br>
+<code>pipenv shell</code><br>
+查看环境中的包<br>
+<code>pip list</code></p>
+<p>#安装flask<br>
+<code>pipenv install flaskn</code><br>
+#flask 最小应用</p>
 
                 
 
@@ -264,12 +240,12 @@ def get_book():<br>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/03/08/逻辑回归/" data-toggle="tooltip" data-placement="top" title="【机器学习】逻辑回归">&larr; Previous Post</a>
+                            <a href="/2019/02/22/初识西塞罗/" data-toggle="tooltip" data-placement="top" title="初识西塞罗">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/02/22/贝叶斯算法/" data-toggle="tooltip" data-placement="top" title="【机器学习】贝叶斯算法">Next Post &rarr;</a>
+                            <a href="/2019/02/22/探索性数据分析/" data-toggle="tooltip" data-placement="top" title="【数据科学】探索性数据分析">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -299,7 +275,7 @@ def get_book():<br>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">安装pipenv</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">创建虚拟环境</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">新建入口文件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">实例化flask对象</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">安装pipenv虚拟环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">安装pipenv</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">创建虚拟环境(这个虚拟环境和项目绑定)</span></a></li></ol></li></ol>
         
         </div>
       </aside>
