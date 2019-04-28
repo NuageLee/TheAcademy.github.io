@@ -141,7 +141,7 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -155,7 +155,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,24 +211,104 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>#随机抽样和样本偏差<br>
-##偏差</p>
+                <p>传统统计学关注的是总体，而现代统计学更多关心的是样本，如图所示<br>
+<img src="/images/15549021121071.jpg" alt=""><br>
+一般而言，数据科学家并不需要操心图中左侧部分的理论本质，而是应该聚焦于抽样过程和手中的数据。<br>
+#随机抽样和样本偏差<br>
+随机抽样，是指以均等的机会从总体的所有可用成员中抽取一个样本，可以使有放回的，也可以是无放回的。抽样的代表性很重要，最有名的例子是关于罗斯福选举预测的例子。<br>
+1936年美国《文学文摘》杂志发起的一次民意调查，该调查的结果预测艾尔弗•兰登将在美国总统选举中战胜富兰克林•罗斯福。《文学文摘》在当时是一份市场份额领先的杂志，此次问卷调查的对象是该期刊的所有订阅者，还额外考虑了一些人，规模合计超过1000万人，并预测兰登将取得压倒性胜利。一周后，盖洛普民意调查的创始人乔治•盖洛普也发起了一次民意调查，调查对象只有约2000人，但准确地预测了罗斯福会取得胜利。两次调查的差异在于调查对象的选择。<br>
+《文学文摘》侧重于调查对象的数量，忽视了选择方法。他们的调查对象是那些社会经济地位相对较高的人群（即该杂志的订阅者，以及那些在当时有电话和汽车等奢侈品的人，他们是市场营销人员的目标）。这导致了调查结果中存在样本偏差，即样本以某种有意义的非随机方式，不同于其想要代表的大规模总体。非随机性（nonrandom）这一术语非常重要，因为几乎任何样本都无法准确地表示总体，即便是随机抽样也做不到。一旦差异具有意义，就会发生样本偏差。如果其他样本也使用了同样的抽取方式，那么也会存在样本偏差。<br>
+在美团等团购媒体上，我们能看到一些对餐馆、酒店、咖啡馆等的评论。这些评论容易产生偏差，因为提交评论的人并非随机选取的。他们写评论是基于一定的出发点的，这将导致自选择偏差的产生。有意向撰写评论的人，很可能是那些获得了不好体验的人，也可能是一些与商家有关联的人，或者就是与没有发表评论者不同的一类人。注意，在将一个商家与类似的商家做对比时，尽管自选择样本或许并未可靠地表明事情的真实状态，但它们依然是更为可靠的，因为对比的双方都存在同样的自选择偏差。<br>
+##偏差<br>
+偏差与误差不同，偏差是因为在随机抽样过程中数据的不准确性导致的，而误差是客观存在的，如图所以一个正常的枪的设计点分布，图中各个点离靶心的距离为误差<br>
+<img src="/images/15549025689582.jpg" alt=""><br>
+一个瞄准有偏差的枪的设计情况是这样的<br>
+<img src="/images/15549025987197.jpg" alt=""><br>
+偏差可以是观察到的，也可能无法观察，如果确实存在偏差，则说明我们使用了不正确的统计学或机器学习模型，或是漏掉了某个变量。</p>
 <h2><span id="随机选择">随机选择</span></h2>
+<p>随机抽样很容易产生偏差， 就好比用一个瞄准有偏差的枪射击，但是由于你的失误恰巧射中了靶心，偏差是可以观察到的，也可能观察不到，因此为了尽可能的避免偏差，使用分层抽样的方法， 例如在民意调查中，将民众按种族分为白人、黑人、亚裔，再在每一层中做随机抽样。</p>
 <h2><span id="数据规模与数据质量">数据规模与数据质量</span></h2>
-<p>##样本均值与总体均值</p>
+<p>在大数据时代，令人惊讶的是，有时数据规模越小，结果反而更好。在随机抽样上花费些时间和精力，不仅可以减小偏差，还能让我们更关注于数据探索和数据质量。例如，在缺失的数据和离群值中，可能包含了一些有用的信息。要从上百万条记录中查找缺失值或评估离群值，成本可能会非常高，但是对于具有数千条记录的样本，这些事情则是完全可行的。此外，如果数据量过大，也无法开展数据绘图和人工检测。<br>
+##样本均值与总体均值</p>
 <h1><span id="选择偏差">选择偏差</span></h1>
+<p>选择偏差是一种可导致误导性或短暂性结论的方式，可能是有意义的，也可能没有。“如果我们拷问数据的时间足够长，那么它迟早会给我们想要的结果”，就是所谓的数据窥探。因此，为了避免偏差，或大规模搜索效应，我们选择从数据中抽出一部分作为验证集，有时候可能要使用多个验证集，或使用目标混洗的方法，本质上是一种置换检验。</p>
 <h2><span id="趋均值回归">趋均值回归</span></h2>
+<p>趋均值回归指对同一变量做连续测量时出现的一种现象，即在极端观测值后，会出现更趋向于中心的观测值。对极值给予特殊的关注和意义，会导致某种形式的选择偏差。</p>
 <h1><span id="统计量的抽样分布">统计量的抽样分布</span></h1>
+<p>通常，样本统计量（如均值等）的分布要比数据本身的分布更加规则，分布的形状更趋向于正态分布的钟形曲线。<br>
+<img src="/images/15549043861297.jpg" alt=""></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)<span class="comment">#做一次简单随机抽样samp_data&lt;data.frame(income=sample(loans_income,1000),type='data_dist')#对5个数据的均值做抽样samp_mean_05&lt;data.frame(income=tapply(sample(loans_income,1000*5),rep(1:1000,rep(5,1000)),FUN=mean),type='mean_of_5')#对20个数据的均值做抽样samp_mean_20&lt;data.frame(income=tapply(sample(loans_income,1000*20),rep(1:1000,rep(20,1000)),FUN=mean),type='mean_of_20')#将抽样结果绑定到一个data.frames对象，并转化为因子类型income&lt;rbind(samp_data,samp_mean_05,samp_mean_20)income$type=factor(income$type,levels=c('data_dist','mean_of_5','mean_of_20'),labels=c('Data','Meanof5','Meanof20'))#绘制直方图ggplot(income,aes(x=income))+geom_histogram(bins=40)+facet_grid(type~.)</span></span><br></pre></td></tr></table></figure>
 <p>##中心极限定理<br>
-##标准误差</p>
+上面这种现象被称为中心极限定理，该定理指出，即使原始总体不符合正态分布，只要样本的规模足够大，并且数据并非在很大程度上存在偏差，那么多个样本得到的均值将会呈现均值分布的种型曲线。<br>
+中心极限定理是支持假设验证和置信区间的底层机制，但是在数据科学中由于任意场景都能够使用自助法(bootstrap)，很少正式的使用假设检验和置信区间。<br>
+##标准误差<br>
+标准误差是一种单变量度量，它总结了单个统计量抽样分布的变异性。<br>
+<img src="/images/15549049220200.jpg" alt=""><br>
+标准误差会随样本规模的增大而减小标准误差与样本规模捡的关系为n的平方根规则，如果要让标准误差减小一般，应该让样本规则增大四倍。</p>
 <h1><span id="自助法">自助法</span></h1>
-<p>##重抽样与自助法</p>
+<p>现代统计学中，自助法是用来衡量标准误差的标准方法，几乎适用于所有的统计量，这种方法不依赖于中心极限定理或其他分布假设。<br>
+自助法：从样本本身中有放回地抽取更多的样本，并对每次重抽样重新计算统计量或模型。从观测数据集中做有放回的抽取而得到的样本被称为自主样本<br>
+自助法是将原始样本复制成千上万次，得到一个假想的总体，其中包括了原始样本中的全部信息，只是规模更大，然后基于这一假设再抽取样本，用于估计样本分部。<br>
+<img src="/images/15549052553838.jpg" alt=""><br>
+自助发的实现：</p>
+<ul>
+<li>抽取一个样本值，记录后放回总体</li>
+<li>重复n次</li>
+<li>记录n个重抽样的均值。</li>
+<li>重复步骤1~3，r次</li>
+<li>受用r个结果，计算他们的标准偏差，生成直方图或箱线图</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(boot)stat_fun&lt;<span class="keyword">function</span>(x,idx)median(x[idx])boot_obj&lt;boot(loans_income,R=<span class="number">1000</span>,statistic=stat_fun)</span><br></pre></td></tr></table></figure>
+<p>结果为： 中位数62000 偏差-70.5999, 标准误差209.1515</p>
+<p>我们可以在自助数据上运行模型，估计模型参数的稳定性或变异性，或改进模型，也可以使用集成学习来平均多个决策树的预测值。</p>
 <h1><span id="置信区间">置信区间</span></h1>
+<p>置信区间桶前面介绍的频数表、直方图、箱线图和标准误差等方法一样，用来评估样本估计量中潜在的误差情况。<br>
+统计抽样原理是置信区间的实现基础。<br>
+置信区间的直观解释是，样本统计量的x%置信区间，表明该区间平均在x%的情况下包含类似的样本估计量<br>
+给定样本规模为n，指定一个感兴趣的样本统计量，计算自助法置信区间的算法如下：</p>
+<ol>
+<li>从数据中有放回地抽取规模为n的随机样本（重抽样）。</li>
+<li>记录重抽样中感兴趣的统计量</li>
+<li>多次重复步骤1~2，例如r次。</li>
+<li>对于x%置信区间，从分布的两端分别对r个重抽样结果切尾[(1-[x/100])/2]%。</li>
+<li>切尾点就是x%自助法置信区间的区间端点<br>
+<img src="/images/15549630703121.jpg" alt=""></li>
+</ol>
 <h1><span id="正态分布">正态分布</span></h1>
+<p>正态分布是传统统计学中一个标志性概念<br>
+<img src="/images/15549631687702.jpg" alt=""><br>
+在正态分布中，68%的数据位于均值的一个标准偏差之内，95%的数据落于两倍的标准偏差之内。<br>
+**传统统计学更关注的是总体，所以需要对总体的分布做出假设，但是数据科学更多的是关注手中的数据，只有在经验概率分布或自助法不可用的情况下，才会使用正态分布作为假设。<br>
+##QQ图<br>
+在标准正态分布中x轴的单位为距离均值的标准偏差，<strong>为了使数据能够与标准正态分布作对比，需要将数据值减去均值，然后除以标准差，这一过程被称为归一化或标准化。<strong>我们称转化值为</strong>z分数</strong>，它用于把数据转化到与正态分布相同的尺度上。<br>
+QQ图用于可视化地确定样本与正态分布间的近似度。对z分数从低到高进行排序，并将每个值的z分数绘制在y轴上。x轴的单位是该值秩的正态分布所对应的分位数。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">norm_samp&lt;rnorm(<span class="number">100</span>)</span><br><span class="line">qqnorm(norm_samp)</span><br><span class="line">abline(a=<span class="number">0</span>,b=<span class="number">1</span>,col=<span class="string">'grey'</span>)<span class="string">')</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/15549661922850.jpg" alt=""></p>
 <h1><span id="长尾分布">长尾分布</span></h1>
+<p>有时候，数据并不符合正态分布，多数数据会出现<strong>长尾效应</strong>。数据分布的尾部，对应于数据中的极值，包括极大值和极小值。长尾分布的意义在于，异常事件发生的可能性远大于正态分布（正常事件）。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nflx&lt;sp500_px[,<span class="string">'NFLX'</span>]</span><br><span class="line">nflx&lt;diff(log(nflx[nflx&gt;<span class="number">0</span>]))</span><br><span class="line">qqnorm(nflx)</span><br><span class="line">abline(a=<span class="number">0</span>,b=<span class="number">1</span>,col=<span class="string">'grey'</span>)</span><br></pre></td></tr></table></figure>
+<p>长尾分布的QQ图：<br>
+<img src="/images/15549667558471.jpg" alt=""></p>
 <h1><span id="学生t分布">学生t分布</span></h1>
+<p>t分布呈正态分布形状，但是钟型稍厚，尾部略长。样本均值的分布通常满足t分布<br>
+<img src="/images/15549747268446.jpg" alt=""><br>
+t分布之随意被广泛使用基于一个事实：即便底层的总体数据并不符合正态分布，但样本统计量通常符合正态分布。也就是中心极限定理。t分布和中心极限定理在数据科学中并不十分重要。</p>
 <h1><span id="二项分布">二项分布</span></h1>
+<p>二项分布是在给定每次试验的成功概率p、试验次数n的情况下，成功数x的频数分布，二项分布可以回答如下问题：</p>
+<blockquote>
+<p>如果链接点击转换为购买的概率是0.02，那么观测到200次点击但没有购买的概率是多少？<br>
+r语言的dbinom函数可以用于计算二项概率</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbinom(x=<span class="number">2</span>,n=<span class="number">5</span>,p=<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure>
+<p>该命令返回0.0729，表示每次试验成功的概率为0.1，在n=5次实验中观测到x=2的概率。<br>
+如果使用pbinom命令</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbinom(<span class="number">2</span>,<span class="number">5</span>,<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure>
+<p>则是在5次成功概率是0.1的实验中，观测到不多与两次成功的概率</p>
+<p>二项分布的均值是nxp，也可以将均值视为n次试验的期望成功次数，其中每次试验的成功概率是p。</p>
+<p>二项分布的方差是nxp(1-p)。如果试验次数足够多，二项分布几乎等于正态分布。</p>
 <h1><span id="泊松分布">泊松分布</span></h1>
+<p>一些过程是根据一个给定的整体速率随机生成事件的。所生成的事件可能是随时间扩展的，例如某个网站的访问者情况、一个收费站的汽车到达情况等；也可能是散布于空间中的，例如每平方米纺织品上的缺陷情况、每百行代码中的拼写错误情况。</p>
+<p>泊松分布的一个关键参数是lambda。它表示在指定时间或空间间隔中，事件发生数量的均值。</p>
 
                 
 
@@ -237,12 +317,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/02/22/贝叶斯算法/" data-toggle="tooltip" data-placement="top" title="【机器学习】贝叶斯算法">&larr; Previous Post</a>
+                            <a href="/2019/02/22/探索性数据分析/" data-toggle="tooltip" data-placement="top" title="【数据科学】探索性数据分析">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/01/28/Hexo+GitHub+MWeb+七牛云搭建博客/" data-toggle="tooltip" data-placement="top" title="使用Hexo+GitHub+MWeb搭建个人博客（Mac平台）">Next Post &rarr;</a>
+                            <a href="/2019/02/22/三维重建概述/" data-toggle="tooltip" data-placement="top" title="【图像处理】三维重建概述">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

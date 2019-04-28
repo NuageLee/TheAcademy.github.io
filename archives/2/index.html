@@ -133,7 +133,7 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -147,7 +147,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -210,43 +210,28 @@
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/信用卡欺诈案例/">
+    <a href="/2019/03/08/线性判别分析/">
         <h2 class="post-title">
-            【机器学习】Kaggle信用卡欺诈案例
+            【机器学习】线性判别分析LDA
         </h2>
         <h3 class="post-subtitle">
-            逻辑回归模型
+            文本分析
         </h3>
         <div class="post-content-preview">
-            ...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
+            Linear Discriminant Analysis
+做数据降维，数据分类，由 Ronald 在1936年提出
+LDA关心的是能够最大化类间区分度的坐标轴成分，将特征空间投影到一个维度更小的k维子空间中，同时保持区分类别的信息。
 
-</div>
-<hr>
+上图中二维空间的点很难分裂（不难啊），投影到一维直线上，很好区分
+打个比方
 
-<div class="post-preview">
+数学原理
 
-    <a href="/2019/03/08/softmax/">
-        <h2 class="post-title">
-            【机器学习】多分类softmax分类器
-        </h2>
-        <h3 class="post-subtitle">
-            逻辑回归模型
-        </h3>
-        <div class="post-content-preview">
-            ...
+找到投影：
+
+目标
+使得不同类别之间的距离越远越好
+每类样例的均值：......
         </div>
     </a>
     
@@ -284,6 +269,75 @@
 EM算法推到
 #GMM(高斯混合模型)
 ...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/08/梯度下降求解逻辑回归/">
+        <h2 class="post-title">
+            【机器学习】简单的逻辑回归例子
+        </h2>
+        <h3 class="post-subtitle">
+            逻辑回归模型
+        </h3>
+        <div class="post-content-preview">
+            Logistic Regression
+The data
+我们将建立一个逻辑回归模型来预测一个学生是否被大学录取。假设你是一个大学系的管理员，你想根据两次考试的结果来决定每个申请人的录取机会。你有以前的申请人的历史数据，你可以用它作为逻辑回归的训练集。对于每一个培训例子，你有两个考试的申请人的分数和录取决定。为了做到这一点，我们将建立一个分类模型，根据考试成绩估计入学概率。
+###首先导入p......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/08/python文本挖掘/">
+        <h2 class="post-title">
+            【机器学习】Python文本挖掘
+        </h2>
+        <h3 class="post-subtitle">
+            文本分析
+        </h3>
+        <div class="post-content-preview">
+            意义
+文本挖掘：从大量文本数据中抽取出有价值的知识，并且利用这些知识重新组织信息的过程。
+概念
+停用词
+停用词就是在每篇文章中都有的一些垃圾词汇和符号，从这些词中没法判断出有用数据
+
+词频(TF)
+某个词在文章中的出现次数/一共有多少词
+逆文档频率（IDF）
+IDF = log(语料库的文档总数/包含该词的文档数+1)
+逆文档频率用来衡量一个词是否为一篇文章独有的关键词，因此越高(log了)......
         </div>
     </a>
     
@@ -349,18 +403,15 @@ BP神经网络
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/梯度下降求解逻辑回归/">
+    <a href="/2019/03/08/信用卡欺诈案例/">
         <h2 class="post-title">
-            【机器学习】简单的逻辑回归例子
+            【机器学习】Kaggle信用卡欺诈案例
         </h2>
         <h3 class="post-subtitle">
             逻辑回归模型
         </h3>
         <div class="post-content-preview">
-            Logistic Regression
-The data
-我们将建立一个逻辑回归模型来预测一个学生是否被大学录取。假设你是一个大学系的管理员，你想根据两次考试的结果来决定每个申请人的录取机会。你有以前的申请人的历史数据，你可以用它作为逻辑回归的训练集。对于每一个培训例子，你有两个考试的申请人的分数和录取决定。为了做到这一点，我们将建立一个分类模型，根据考试成绩估计入学概率。
-###首先导入p......
+            ...
         </div>
     </a>
     
@@ -380,60 +431,32 @@ The data
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/线性回归/">
+    <a href="/2019/03/08/什么是NLP/">
         <h2 class="post-title">
-            【机器学习】线性回归
-        </h2>
-        <h3 class="post-subtitle">
-            线性回归模型
-        </h3>
-        <div class="post-content-preview">
-            线性回归
-线性模型形式简单，易于建模，许多非线性模型都是在线性模型的基础上通过引入层级结构或高位映射得到。
-回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系，回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知函数。按照输入变量的个数，可分为一元回归和多元回归；按照输入变量和输出变量之间的类型，可分为线性回归和非线性回归。
-
-只考虑一种变......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/03/08/线性判别分析/">
-        <h2 class="post-title">
-            【机器学习】线性判别分析LDA
+            【机器学习】NLP基础
         </h2>
         <h3 class="post-subtitle">
             文本分析
         </h3>
         <div class="post-content-preview">
-            Linear Discriminant Analysis
-做数据降维，数据分类，由 Ronald 在1936年提出
-LDA关心的是能够最大化类间区分度的坐标轴成分，将特征空间投影到一个维度更小的k维子空间中，同时保持区分类别的信息。
+            什么是NLP
+Natural Language Processing,让电脑懂人类的语言
+主要范畴：
 
-上图中二维空间的点很难分裂（不难啊），投影到一维直线上，很好区分
-打个比方
+文本分析
+信息检索
+词性标注
+问答系统等
 
-数学原理
+NLP技术
+##词法分析
+###分词技术
 
-找到投影：
+###词性标注
+为分词结果中每个词标注一个正确的词性的程序
 
-目标
-使得不同类别之间的距离越远越好
-每类样例的均值：......
+###命名实体识别
+NER，专门识别，识别文中拥有特定意义的实体，例如人名，地名，机构名，专有名词等。分为三大类（实体类，时间类和数字类）、......
         </div>
     </a>
     
@@ -453,98 +476,133 @@ LDA关心的是能够最大化类间区分度的坐标轴成分，将特征空�
 
 <div class="post-preview">
 
-    <a href="/2019/02/22/初识西塞罗/">
+    <a href="/2019/02/22/无监督学习/">
         <h2 class="post-title">
-            初识西塞罗
-        </h2>
-        <h3 class="post-subtitle">
-            穷查理宝典中对西塞罗部分摘抄
-        </h3>
-        <div class="post-content-preview">
-            1.试图解决基本问题的哲学是一种理想活动，适合所有年纪的人，哪怕是行将就木的老年人
-2.我们再怎么仰慕哲学的出色都是不够的；人们只要献身哲学，就永远不会在任何人生阶段或境况中迷失自我
-3.害怕死亡是愚蠢和不可接受的，因为人死后只有两种可能，过上更好、永恒的生活，即使不这样，你也不用再保留任何痛苦
-4.感官的愉悦比演说辩护差远了
-5.晚年的最佳保护铠甲是一段在它之前被悉心度过的生活，一段被用于......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-02-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#哲学" title="哲学">哲学</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/02/22/pipenv/">
-        <h2 class="post-title">
-            【Python Flask】环境安装
-        </h2>
-        <h3 class="post-subtitle">
-            穷查理宝典中对西塞罗部分摘抄
-        </h3>
-        <div class="post-content-preview">
-            文档地址：https://docs.pipenv.org
-安装pipenv虚拟环境
-安装pipenv
-pip install --user pipenv
-查找系统中python的位置
-python3 -m site
-找到USER_BASE后面的地址
-
-修改好后
-source ~/.bash_profile
-创建虚拟环境(这个虚拟环境和项目绑定)
-在项目文件夹中：
-pipenv install......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-02-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#后端" title="后端">后端</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/02/22/探索性数据分析/">
-        <h2 class="post-title">
-            【数据科学】探索性数据分析
+            【数据科学】无监督学习
         </h2>
         <h3 class="post-subtitle">
             面向数据科学家的实用统计学
         </h3>
         <div class="post-content-preview">
-            结构化数据的分类
-机构化数据可分为数值型数据和分类数据两类，对于数据科学家来说一定要将数据先做分类，为下面的数据清理工作打下基础。
-连续型数值数据
-如风速、持续时间等
-离散型数值数据
-某一事件的发生次数
-分类数据
-分类数据主要可分为二元数据和有序数据，二元数据：例如取值为0或1，true或false等；有序数据：例如数值排序1、2、3、4、5。
-拓展
+            主成分分析
+一个简单的例子
+计算主成分
+解释主成分
+K-Means聚类
+一个简单的例子
+K-Means算法
+解释类
+选择类的个数
+层次聚类
+一个简单的例子
+树状图
+凝聚算法
+测量相异性
+基于模型的聚类
+多元正态分布
+混合正态分布
+类数的选取
+变量的缩放和分类变量
+变量的缩放
+控制变量
+分类数据和高氏距离
+混合数据的聚类问题
+...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
 
-了解R语言的数据分类方式
-学习SQL数......
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/22/分类/">
+        <h2 class="post-title">
+            【数据科学】分类
+        </h2>
+        <h3 class="post-subtitle">
+            面向数据科学家的实用统计学
+        </h3>
+        <div class="post-content-preview">
+            朴素贝叶斯算法
+准确的贝叶斯分量是不切实际的
+朴素解决方案
+数值型预测变量
+判别分析
+协方差矩阵
+费希尔线性判别分析
+一个简单的例子
+逻辑回归
+逻辑相应函数和Logit函数
+逻辑回归和广义线性模型
+广义线性模型
+逻辑回归的预测值
+解释系数和优势比
+线性回归与逻辑回归：相似与不同
+魔性评估
+评估分类模型
+混淆矩阵
+稀有类问题
+准确率、召回率和特异性
+ROC曲线
+AUC
+提升
+不平衡数据的处理策......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/22/回归于预测/">
+        <h2 class="post-title">
+            【数据科学】统计实验与显著性检验
+        </h2>
+        <h3 class="post-subtitle">
+            面向数据科学家的实用统计学
+        </h3>
+        <div class="post-content-preview">
+            简单线性回归
+
+因变量：想要预测的变量
+自变量：用于预测响应的变量
+记录：就是一行数据
+截距：即当X=0时的预测值
+回归系数：回归线的斜率
+拟合值：从回归线获得的估计值
+残差：观测值和拟合值之间的差异
+最小二乘法：一种通过最小化残差的平方和你和回归的方法
+
+回归方程
+对于回归问题，我们试图用线性关系从变量X预测变量y，表示为：
+
+Y = b0 + b1X
+其中b0为截距，b1为斜率
+在R语言......
         </div>
     </a>
     
@@ -602,7 +660,11 @@ pipenv install......
     <div class="tags">
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="24">机器学习</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="30">机器学习</a>
+            
+        
+            
+            <a href="/tags/#图像处理" title="图像处理" rel="4">图像处理</a>
             
         
             
@@ -697,15 +759,15 @@ pipenv install......
         </li>
       
         <li>
-          <a href="/2019/03/08/python文本挖掘/">【机器学习】Python文本挖掘</a>
-        </li>
-      
-        <li>
           <a href="/2019/03/08/DBSCAN/">【机器学习】聚类算法DBSCAN</a>
         </li>
       
         <li>
-          <a href="/2019/03/08/PCA主成分分析/">【机器学习】PCA主成分分析</a>
+          <a href="/2019/03/08/逻辑回归/">【机器学习】逻辑回归</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/08/Kmeans/">【机器学习】聚类算法Kmeans</a>
         </li>
       
     </ul>

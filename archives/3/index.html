@@ -133,7 +133,7 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -147,7 +147,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -210,27 +210,61 @@
 
 <div class="post-preview">
 
-    <a href="/2019/02/22/集成算法/">
+    <a href="/2019/02/22/GPU驱动CUDA/">
         <h2 class="post-title">
-            【机器学习】集成算法
+            【计算机视觉】Ubuntu16.04LST安装Nvidia驱动和CUDA
         </h2>
         <h3 class="post-subtitle">
-            决策树算法
+            机器学习实战：基于SKLearn
         </h3>
         <div class="post-content-preview">
-            什么是集成算法
-集成算法通过构建并结合多个学习器来完成学习任务，常可获得比单一学习器更显著优化的繁华性能。一般可分为：
+            显卡配置 GeForce RTX 2060/PCIe/SSE2
+禁用原有驱动
+卸载原有驱动
+首先要卸载原有的nvidia驱动，我的电脑安装好系统直接是build-in display，连分辨率都调不了，说明连能用的驱动都没有。。。
+不过怕出幺蛾子，还是要意思一下：
+1sudo apt-get remove -purge nvidia*
+禁用nouveau驱动
+要安装nvidia驱动，必须禁用......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#图像处理" title="图像处理">图像处理</a>
+            
+        </div>
+    
 
-串行
-并行
-结合策略可分为:
-平均法
-加权平均法
-投票法
-学习法
+</div>
+<hr>
 
-Adaboost
-AdaBoost是最著名的Boosting族算法。开始时，所有样本的权重相同，训练得到第一个基分类器。从第二轮开始，每轮开始前都先根据上一轮基分类器的分类效果调整每个样本的权重，上一轮分......
+<div class="post-preview">
+
+    <a href="/2019/02/22/探索性数据分析/">
+        <h2 class="post-title">
+            【数据科学】探索性数据分析
+        </h2>
+        <h3 class="post-subtitle">
+            面向数据科学家的实用统计学
+        </h3>
+        <div class="post-content-preview">
+            结构化数据的分类
+机构化数据可分为数值型数据和分类数据两类，对于数据科学家来说一定要将数据先做分类，为下面的数据清理工作打下基础。
+连续型数值数据
+如风速、持续时间等
+离散型数值数据
+某一事件的发生次数
+分类数据
+分类数据主要可分为二元数据和有序数据，二元数据：例如取值为0或1，true或false等；有序数据：例如数值排序1、2、3、4、5。
+拓展
+
+了解R语言的数据分类方式
+学习SQL数......
         </div>
     </a>
     
@@ -250,18 +284,85 @@ AdaBoost是最著名的Boosting族算法。开始时，所有样本的权重相�
 
 <div class="post-preview">
 
-    <a href="/2019/02/22/特征工程-1/">
+    <a href="/2019/02/22/数据和抽样分布/">
         <h2 class="post-title">
-            【机器学习】特征工程
+            【数据科学】数据和抽样分布
+        </h2>
+        <h3 class="post-subtitle">
+            面向数据科学家的实用统计学
+        </h3>
+        <div class="post-content-preview">
+            传统统计学关注的是总体，而现代统计学更多关心的是样本，如图所示
+
+一般而言，数据科学家并不需要操心图中左侧部分的理论本质，而是应该聚焦于抽样过程和手中的数据。
+#随机抽样和样本偏差
+随机抽样，是指以均等的机会从总体的所有可用成员中抽取一个样本，可以使有放回的，也可以是无放回的。抽样的代表性很重要，最有名的例子是关于罗斯福选举预测的例子。
+1936年美国《文学文摘》杂志发起的一次民意调查，该调......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/22/三维重建概述/">
+        <h2 class="post-title">
+            【图像处理】三维重建概述
+        </h2>
+        <h3 class="post-subtitle">
+            机器学习实战：基于SKLearn
+        </h3>
+        <div class="post-content-preview">
+            相关概念
+彩色图像与深度的图像
+彩色图像也叫作RGB图像，R、G、B三个分量对应于红、绿、蓝三个通道的颜色，它们的叠加组成了图像像素的不同灰度级。RGB颜色空间是构成多彩现实世界的基础。深度图像又被称为距离图像，与灰度图像中像素点存储亮度值不同，其像素点存储的是该点到相机的距离，即深度值。下图表示深度图像与灰度图像之间的关系。
+
+深度值指的目标物体与测量器材之间的距离。由于深度值的大小只与距......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#图像处理" title="图像处理">图像处理</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/22/决策树算法/">
+        <h2 class="post-title">
+            【机器学习】决策树
         </h2>
         <h3 class="post-subtitle">
             决策树算法
         </h3>
         <div class="post-content-preview">
-            特征归一化
-特征归一化是为了消除特征之间的量纲影响，例如一个数据分布在1-1000，那么模型会认为值大的数据影响较大，所以需要将数据映射到一个小的范围。
-归一化可以使梯度下降的求解更为简化，使用梯度下降求解的算法如线性回归、逻辑回归、支持向量机、神经网络等模型都需要做归一化处理。但对决策树这种不需要梯度下降求解的算法不适用，因为归一化并不会改变决策树的信息增益。
-线性函数归一化(Min-Ma......
+            什么是决策树
+依据树的结构来进行决策，通常包含一个根节点（）、若干个内部节点和若干个叶节点。跟节点包含样本全集，每个节点代表一个属性，从根节点到一个叶节点对应了一个判定测试序列。
+决策树的目的是产生一棵繁华能力强，的决策树，其基本流程遵循分而治之的策略
+
+伪代码：
+1234567891011121314151617181920输入集: training set: D = &#123;(x1,......
         </div>
     </a>
     
@@ -303,6 +404,102 @@ AdaBoost是最著名的Boosting族算法。开始时，所有样本的权重相�
         <div class="tags">
             
               <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/22/CUDA入门/">
+        <h2 class="post-title">
+            【计算机视觉】CUDA入门
+        </h2>
+        <h3 class="post-subtitle">
+            机器学习实战：基于SKLearn
+        </h3>
+        <div class="post-content-preview">
+            ...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#图像处理" title="图像处理">图像处理</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/22/端到端的机器学习项目/">
+        <h2 class="post-title">
+            【数据科学】端到端的机器学习项目——金县房价预测
+        </h2>
+        <h3 class="post-subtitle">
+            机器学习实战：基于SKLearn
+        </h3>
+        <div class="post-content-preview">
+            ...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/22/pipenv/">
+        <h2 class="post-title">
+            【Python Flask】环境安装
+        </h2>
+        <h3 class="post-subtitle">
+            穷查理宝典中对西塞罗部分摘抄
+        </h3>
+        <div class="post-content-preview">
+            文档地址：https://docs.pipenv.org
+安装pipenv虚拟环境
+安装pipenv
+pip install --user pipenv
+查找系统中python的位置
+python3 -m site
+找到USER_BASE后面的地址
+
+修改好后
+source ~/.bash_profile
+创建虚拟环境(这个虚拟环境和项目绑定)
+在项目文件夹中：
+pipenv install......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-02-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
             
         </div>
     
@@ -360,227 +557,6 @@ Bachsize
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/02/22/决策树算法/">
-        <h2 class="post-title">
-            【机器学习】决策树
-        </h2>
-        <h3 class="post-subtitle">
-            决策树算法
-        </h3>
-        <div class="post-content-preview">
-            什么是决策树
-依据树的结构来进行决策，通常包含一个根节点（）、若干个内部节点和若干个叶节点。跟节点包含样本全集，每个节点代表一个属性，从根节点到一个叶节点对应了一个判定测试序列。
-决策树的目的是产生一棵繁华能力强，的决策树，其基本流程遵循分而治之的策略
-
-伪代码：
-1234567891011121314151617181920输入集: training set: D = &#123;(x1,......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-02-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/02/22/贝叶斯算法/">
-        <h2 class="post-title">
-            【机器学习】贝叶斯算法
-        </h2>
-        <h3 class="post-subtitle">
-            决策树算法
-        </h3>
-        <div class="post-content-preview">
-            什么是贝叶斯算法
-贝叶斯生前解决逆向概率问题
-其所发表论文&quot;An essay towards solving a problem in the doctrine of chances&quot;
-这个问题，简单概述来说，一个包里面有若干黑球和白球，但我们不知道数量，所以如果有人问从这个包里取出黑球的概率是多少？我们无法回答。贝叶斯所要解决的，就是通过不断尝试，来试图通过经验来估算这......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-02-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/02/22/数据和抽样分布/">
-        <h2 class="post-title">
-            【数据科学】数据和抽样分布
-        </h2>
-        <h3 class="post-subtitle">
-            面向数据科学家的实用统计学
-        </h3>
-        <div class="post-content-preview">
-            #随机抽样和样本偏差
-##偏差
-随机选择
-数据规模与数据质量
-##样本均值与总体均值
-选择偏差
-趋均值回归
-统计量的抽样分布
-##中心极限定理
-##标准误差
-自助法
-##重抽样与自助法
-置信区间
-正态分布
-长尾分布
-学生t分布
-二项分布
-泊松分布
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-02-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/01/28/Hexo+GitHub+MWeb+七牛云搭建博客/">
-        <h2 class="post-title">
-            使用Hexo+GitHub+MWeb搭建个人博客（Mac平台）
-        </h2>
-        <h3 class="post-subtitle">
-            快速搭建个人博客系统
-        </h3>
-        <div class="post-content-preview">
-            Hexo+GitHub+MWeb搭建个人博客（Mac平台）
-博客地址：www.theacademy.top
-Hexo 安装
-Hexo官网：https://hexo.io/zh-cn/
-官网上有详细的安装指南
-
-这时候就在blog文件夹安装好了hexo框架，开启hexo server后，在http://localhost:4000/.端口就可以看到自己的本地博客了。
-然后，使用VSCode打开......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-01-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hexo博客搭建" title="Hexo博客搭建">Hexo博客搭建</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/01/22/深度学习环境安装Mac+Anaconda+Tensorflow+Keras+sklearn/">
-        <h2 class="post-title">
-            深度学习环境安装Mac+Anaconda+Tensorflow+Keras+Sklearn
-        </h2>
-        <h3 class="post-subtitle">
-            Mac深度学习环境安装
-        </h3>
-        <div class="post-content-preview">
-            创建Anaconda环境
-Anaconda是一个Python万能包，直接上网站下载安装包即可安装
-
-安装好Anaconda后，创建conda环境：
-conda create -n tensorflow pip python=3.6
-Conda环境相当于一个Git的repository，一个和主系统隔绝的环境，tensorflow是这个环境的名字，可以任意取名。
-激活环境：
-source ac......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2018-01-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/18/hexo-theme-beantech/">
-        <h2 class="post-title">
-            [Hexo] Theme BeanTech
-        </h2>
-        <h3 class="post-subtitle">
-            This is hexo theme Demo.
-        </h3>
-        <div class="post-content-preview">
-            
-Ported Theme of Hux Blog, Thank Huxpro for designing such a flawless theme.
-This BeanTech theme created by YuHsuan modified from the original Porter Kaijun
-
-
-
-
-Usage
-
-I publish the whole project f......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2017-03-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Hexo" title="Hexo">Hexo</a>
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-              <a href="/tags/#XXX" title="XXX">XXX</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -591,6 +567,10 @@ I publish the whole project f......
             <a href="/archives/2/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/archives/4/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -617,7 +597,11 @@ I publish the whole project f......
     <div class="tags">
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="24">机器学习</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="30">机器学习</a>
+            
+        
+            
+            <a href="/tags/#图像处理" title="图像处理" rel="4">图像处理</a>
             
         
             
@@ -712,15 +696,15 @@ I publish the whole project f......
         </li>
       
         <li>
-          <a href="/2019/03/08/python文本挖掘/">【机器学习】Python文本挖掘</a>
-        </li>
-      
-        <li>
           <a href="/2019/03/08/DBSCAN/">【机器学习】聚类算法DBSCAN</a>
         </li>
       
         <li>
-          <a href="/2019/03/08/PCA主成分分析/">【机器学习】PCA主成分分析</a>
+          <a href="/2019/03/08/逻辑回归/">【机器学习】逻辑回归</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/08/Kmeans/">【机器学习】聚类算法Kmeans</a>
         </li>
       
     </ul>

@@ -141,7 +141,7 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -155,7 +155,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -244,9 +244,7 @@
 <li>DataFrame对象</li>
 </ul>
 <h1><span id="位置估计">位置估计</span></h1>
-<p>探索数据的一个基本步骤，就是获取每一特征的<strong>典型值</strong>，也就是对数据最常出现的位置进行估计，即判断数据的集中趋势。</p>
-<h1><span id="基本位置估计方法">基本位置估计方法</span></h1>
-<p>对于特征样本中位置的估计，大体有均值和中值两种方式以及他们的各种变体。<br>
+<p>探索数据的一个基本步骤，就是获取每一特征的<strong>典型值</strong>，也就是对数据最常出现的位置进行估计，即判断数据的集中趋势。<br>
 ##均值</p>
 <h3><span id="基本均值">基本均值</span></h3>
 <p>没有必要解释了。。。<br>
@@ -272,7 +270,8 @@
 <li>如何在存在变异性的情况下作出决策</li>
 </ul>
 <h2><span id="基于偏差的变异性估计">基于偏差的变异性估计</span></h2>
-<p>栗子：给定依据数据集[1,4,4]，则</p>
+<p>偏差也叫<strong>误差</strong>或<strong>残差</strong>，首先要选择使用基于均值的偏差还是基于中值的偏差<br>
+栗子：给定依据数据集[1,4,4]，则</p>
 <ul>
 <li>均值=3</li>
 <li>中值=4<br>
@@ -282,22 +281,23 @@
 </ul>
 <p>这些偏差说明了数据围绕均值/中值的分散程度</p>
 <h3><span id="平均绝对偏差">平均绝对偏差</span></h3>
-<p><strong>变异性的测量就是估计这些偏差的典型值。</strong><br>
+<p><strong>变异性的测量就是估计这些偏差的典型值。在数据科学中就是预测值和真实值的距离</strong><br>
 单纯的相加是没有意义的，因为和总为零。因此引入了平均绝对偏差<br>
-<strong>平均绝对偏差公式</strong></p>
+<img src="/images/15548686426756.jpg" alt=""></p>
 <h3><span id="方差">方差</span></h3>
 <p>方差和标准差是最广为人知的变异性估计量，他们都是基于偏差的平方。<br>
-方差是偏差平方的均值<br>
-<strong>方差公式</strong><br>
-###标准差<br>
+方差，也叫做<strong>均方误差</strong>是偏差平方的均值<br>
+<img src="/images/15548686763974.jpg" alt=""></p>
+<p>###标准差<br>
 标准差是方差的平方根<br>
-<strong>标准差公式</strong><br>
+<img src="/images/15548686858776.jpg" alt=""><br>
 标准差在机器学习中用的更普遍，因为从数学角度看，使用平方值要比使用绝对值更方便。<br>
 ###中位数绝对偏差<br>
 中位数绝对偏差(MAD)是一种稳健(对于离群点)的变异性估计量，公式为：<br>
-<strong>MAD公式</strong></p>
+<img src="/images/15548689024518.jpg" alt=""><br>
+有时中位数绝对偏差会乘上一个常数比例因子，通常为1.4826，使得在正态分布下，中位数绝对偏差与标准差具有相同的尺度。</p>
 <h3><span id="上述四种变异性估计的总结">上述四种变异性估计的总结</span></h3>
-<p>即时数据负荷正态分布，上述四种变异性估计也不尽相同，标准差总是大于平均绝对偏差，平均绝对偏差总是大于中位数偏差</p>
+<p>即使数据符合正态分布，上述四种变异性估计也不尽相同，标准差总是大于平均绝对偏差，平均绝对偏差总是大于中位数偏差</p>
 <h2><span id="基于百分位数的变异性估计">基于百分位数的变异性估计</span></h2>
 <p>另一种估计方式是查看有序数据的分布，称为<strong>极差</strong>，即数据最大值与最小值之间的差。<br>
 极差对离群点很敏感。为了避免这一点，我们可以先删除两端的10%。<br>
@@ -350,7 +350,10 @@
 计算步骤如下：</p>
 <ul>
 <li>输出值 x 输出值出现的概率</li>
-<li>将这些值加起来</li>
+<li>将这些值加起来<br>
+举个例子，一个公司提供一种包月服务，一种是每月300美元，5%客户会选择；另一种50美元，15%会选择，另外80%不会选择任何服务。<br>
+则，参加会议的人支付服务费的期望值为：<br>
+期望值=0.05x300 + 0.15x50 + 0.8x0 = 22.5</li>
 </ul>
 <h1><span id="相关性">相关性</span></h1>
 <ul>
@@ -358,8 +361,9 @@
 <li>负相关：变量X的高值随变量Y的低值变化而变化</li>
 </ul>
 <h2><span id="相关系数皮尔逊相关系数">相关系数（皮尔逊相关系数）</span></h2>
-<p>相关系数用于给出了两个特征之间相关性的估计值<br>
+<p>相关系数用于给出了两个特征之间相关性的估计值，最常用的是皮尔逊相关系数：<br>
 <img src="/images/15547874480318.jpg" alt=""><br>
+其他统计学的相关系数有，斯皮尔曼秩相关系数、肯德尔秩相关系数，但是在数据科学中不常用。<br>
 可绘制相关性图标来查看各个变量之间的相关性，在R语言中使用corrplt包来绘制<br>
 <img src="/images/15547876756767.jpg" alt=""></p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">etfs &lt;- sp500_px[row.names(sp500_px)&gt;<span class="string">"2012-07-01"</span>, sp500_sym[sp500_sym$setor==<span class="string">"etf"</span>, <span class="string">'symbol'</span>]]</span><br><span class="line"><span class="keyword">library</span>(corrplot)</span><br><span class="line">corrplot(cor(etfs), method=<span class="string">"ellipse"</span>)</span><br></pre></td></tr></table></figure>
@@ -375,9 +379,29 @@
 <h1><span id="探索两个及以上变量">探索两个及以上变量</span></h1>
 <p>均值、方差等上述的描述信息，一次只针对一个特征，这种分析方式成为单变量分析，相关性分析等则为双变量分析。</p>
 <h2><span id="六边形图和等势线">六边形图和等势线</span></h2>
-<h2><span id="两个分类变量">两个分类变量</span></h2>
-<h2><span id="分类数据和数值型数据">分类数据和数值型数据</span></h2>
+<p>对于上万级别的<strong>数值数据</strong>，散点图会过于密集，所以使用六边形图和等势线图进行可视化</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kc_tax0 &lt;- subset(kc_tax, TaxAssessedValue &lt; <span class="number">750000</span> &amp; SqFtToLiving&gt;<span class="number">100</span> &amp; SqFtTotLiving&lt;<span class="number">3500</span>)</span><br><span class="line">nrow(kc_tax0)</span><br><span class="line">[<span class="number">1</span>] <span class="number">432693</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ggplot(kc_tax0,(aes(x=SqFtTotLiving,y=TaxAssessedValue)))+stat_binhex(colour=<span class="string">"white"</span>)+theme_bw()+scale_fill_gradient(low=<span class="string">"white"</span>,high=<span class="string">"black"</span>)+labs(x=<span class="string">"FinishedSquareFeet"</span>,y=<span class="string">"TaxAssessedValue"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15548930945720.jpg" alt=""><br>
+在六边形图的基础上绘制等势线，每条等势线表示特定的密度值，并随着接近“顶峰”而增大</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ggplot(kc_tax0,aes(SqFtTotLiving,TaxAssessedValue))+theme_bw()+geom_point(alpha=<span class="number">0.1</span>)+geom_density2d(colour=<span class="string">"white"</span>)+labs(x=<span class="string">"FinishedSquareFeet"</span>,y=<span class="string">"TaxAssessedValue"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15548955081874.jpg" alt=""></p>
+<h2><span id="列联表">列联表</span></h2>
+<p>列联表用于总结两个分类变量，它是按照分类进行统计的。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(descr)x_tab&lt;CrossTable(lc_loans$grade,lc_loans$status,prop.c=<span class="literal">FALSE</span>,prop.chisq=<span class="literal">FALSE</span>,prop.t=<span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15548958755528.jpg" alt=""></p>
+<h2><span id="箱线图">箱线图</span></h2>
+<p>如果想组合查看分类型数据和数据型数据，就要使用箱线图</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot(pct_carrier_delay~airline,data=airline_stats,ylim=c(<span class="number">0</span>,<span class="number">50</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15548959607562.jpg" alt=""><br>
+小提琴图是箱线图的变体，比箱线图更直观</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ggplot(data=airline_stats,aes(airline,pct_carrier_delay))+ylim(<span class="number">0</span>,<span class="number">50</span>)+geom_violin()+labs(x=<span class="string">""</span>,y=<span class="string">"Daily%ofDelayedFlights"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/15548960173183.jpg" alt=""></p>
 <h2><span id="多变量的可视化">多变量的可视化</span></h2>
+<p>实现多个变量的可视化，是把其中一个变量当做<strong>条件变量</strong>，然后使用上述的几种构图方式</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ggplot(subset(kc_tax0,ZipCode%<span class="keyword">in</span>%c(<span class="number">98188</span>,<span class="number">98105</span>,<span class="number">98108</span>,<span class="number">98126</span>)),aes(x=SqFtTotLiving,y=TaxAssessedValue))+stat_binhex(colour=<span class="string">"white"</span>)+theme_bw()+scale_fill_gradient(low=<span class="string">"white"</span>,high=<span class="string">"blue"</span>)+labs(x=<span class="string">"FinishedSquareFeet"</span>,y=<span class="string">"TaxAssessedValue"</span>)+facet_wrap(<span class="string">"ZipCode"</span>)</span><br></pre></td></tr></table></figure>
+<p>如图所示将邮编作为条件变量<br>
+<img src="/images/15548963805597.jpg" alt=""></p>
 
                 
 
@@ -386,12 +410,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/02/22/pipenv/" data-toggle="tooltip" data-placement="top" title="【Python Flask】环境安装">&larr; Previous Post</a>
+                            <a href="/2019/02/22/GPU驱动CUDA/" data-toggle="tooltip" data-placement="top" title="【计算机视觉】Ubuntu16.04LST安装Nvidia驱动和CUDA">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/02/22/集成算法/" data-toggle="tooltip" data-placement="top" title="【机器学习】集成算法">Next Post &rarr;</a>
+                            <a href="/2019/02/22/数据和抽样分布/" data-toggle="tooltip" data-placement="top" title="【数据科学】数据和抽样分布">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -421,7 +445,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">结构化数据的分类</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">连续型数值数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">离散型数值数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">分类数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">拓展</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">矩形数据</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Python中的矩形数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">R中的矩形数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">一些非矩形数据结构</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">时间数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">空间数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">图形</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">拓展</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">位置估计</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">基本位置估计方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.0.1.</span> <span class="toc-nav-text">基本均值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.0.2.</span> <span class="toc-nav-text">切尾均值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.0.3.</span> <span class="toc-nav-text">加权均值</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">中位数</span></a></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">变异性估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">基于偏差的变异性估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.1.</span> <span class="toc-nav-text">平均绝对偏差</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.2.</span> <span class="toc-nav-text">方差</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.3.</span> <span class="toc-nav-text">上述四种变异性估计的总结</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">基于百分位数的变异性估计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">使用R语言计算</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">探索数据分布</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">箱线图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">频数表和直方图</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.2.1.</span> <span class="toc-nav-text">统计学中的矩</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">密度估计</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">探索二元数据和分类数据</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">条形图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">饼状图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">众数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.4.</span> <span class="toc-nav-text">期望值</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">相关性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">相关系数（皮尔逊相关系数）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">探索两个及以上变量</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.1.</span> <span class="toc-nav-text">六边形图和等势线</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.2.</span> <span class="toc-nav-text">两个分类变量</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.3.</span> <span class="toc-nav-text">分类数据和数值型数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.4.</span> <span class="toc-nav-text">多变量的可视化</span></a></li></ol></li>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">结构化数据的分类</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">连续型数值数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">离散型数值数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">分类数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">拓展</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">矩形数据</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Python中的矩形数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">R中的矩形数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">一些非矩形数据结构</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">时间数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">空间数据</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">图形</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">拓展</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">位置估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.0.1.</span> <span class="toc-nav-text">基本均值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.0.2.</span> <span class="toc-nav-text">切尾均值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.0.3.</span> <span class="toc-nav-text">加权均值</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">中位数</span></a></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">变异性估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">基于偏差的变异性估计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.1.</span> <span class="toc-nav-text">平均绝对偏差</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.2.</span> <span class="toc-nav-text">方差</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.1.3.</span> <span class="toc-nav-text">上述四种变异性估计的总结</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">基于百分位数的变异性估计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">使用R语言计算</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">探索数据分布</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">箱线图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">频数表和直方图</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.2.1.</span> <span class="toc-nav-text">统计学中的矩</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">密度估计</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">探索二元数据和分类数据</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">条形图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">饼状图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">众数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.4.</span> <span class="toc-nav-text">期望值</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">相关性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">相关系数（皮尔逊相关系数）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">探索两个及以上变量</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">六边形图和等势线</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.2.</span> <span class="toc-nav-text">列联表</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.3.</span> <span class="toc-nav-text">箱线图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.4.</span> <span class="toc-nav-text">多变量的可视化</span></a></li></ol></li>
         
         </div>
       </aside>

@@ -133,7 +133,7 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -147,7 +147,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -272,25 +272,22 @@
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/python文本挖掘/">
+    <a href="/2019/03/08/DBSCAN/">
         <h2 class="post-title">
-            【机器学习】Python文本挖掘
+            【机器学习】聚类算法DBSCAN
         </h2>
         <h3 class="post-subtitle">
             文本分析
         </h3>
         <div class="post-content-preview">
-            意义
-文本挖掘：从大量文本数据中抽取出有价值的知识，并且利用这些知识重新组织信息的过程。
-概念
-停用词
-停用词就是在每篇文章中都有的一些垃圾词汇和符号，从这些词中没法判断出有用数据
+            DBSCAN基本概念
+全程(Density-Based Spatial Clustering of Applications with Noise)
+基于密度，带有噪声点的分类方法
 
-词频(TF)
-某个词在文章中的出现次数/一共有多少词
-逆文档频率（IDF）
-IDF = log(语料库的文档总数/包含该词的文档数+1)
-逆文档频率用来衡量一个词是否为一篇文章独有的关键词，因此越高(log了)......
+核心对象：画个圈，若圈内某个点的密度达到算法设定的阈值(minPts)则为核心点
+邻域距离半径： 设定画圈的半径
+直接密度可达：p在点q的r邻域内，且q是核心点，则p-q直接密度可达
+密度可达：有一个点序列q0......
         </div>
     </a>
     
@@ -310,22 +307,65 @@ IDF = log(语料库的文档总数/包含该词的文档数+1)
 
 <div class="post-preview">
 
-    <a href="/2019/03/08/DBSCAN/">
+    <a href="/2019/03/08/逻辑回归/">
         <h2 class="post-title">
-            【机器学习】聚类算法DBSCAN
+            【机器学习】逻辑回归
+        </h2>
+        <h3 class="post-subtitle">
+            逻辑回归模型
+        </h3>
+        <div class="post-content-preview">
+            逻辑回归
+线性回归中是描述因变量的期望与自变量之间的线性关系，回归通常指结果是一个值，而逻辑回归虽然也叫回归，但是却是一个分类模型。**实际上是通过Sigmoid函数将回归结果映射到0-1的区间。**是最经典的二分类方法，其结果是离散的，如：是，否。一般拿到一个分类任务首先尝试的就是逻辑回归，再看其他方法是否比逻辑回归好。
+逻辑回归的决策边界：可以是非线性的
+Sigmoid函数
+二分类问题的......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/08/Kmeans/">
+        <h2 class="post-title">
+            【机器学习】聚类算法Kmeans
         </h2>
         <h3 class="post-subtitle">
             文本分析
         </h3>
         <div class="post-content-preview">
-            DBSCAN基本概念
-全程(Density-Based Spatial Clustering of Applications with Noise)
-基于密度，带有噪声点的分类方法
+            什么是聚类算法
+解决无监督问题，没有分类的标签，聚类则把相似的东西分到一组
+难点：
 
-核心对象：画个圈，若圈内某个点的密度达到算法设定的阈值(minPts)则为核心点
-邻域距离半径： 设定画圈的半径
-直接密度可达：p在点q的r邻域内，且q是核心点，则p-q直接密度可达
-密度可达：有一个点序列q0......
+没有办法基于预测值进行评估
+如何调参
+
+K-Means
+基本概念
+
+K值：人为指定一个K值，将数据分类为K个堆
+质心：向量各维取平均值
+距离：每两个数据点之间的欧氏距离或余弦相似度（需要先标准化）
+优化目标：
+
+最外层表示有多少个蔟
+内层表示对于每一个簇的中心点，让每一个样本到重心点的距离越小越好
+
+K-M......
         </div>
     </a>
     
@@ -430,6 +470,66 @@ PCA的核心原理就是基变换
 
 <div class="post-preview">
 
+    <a href="/2019/03/08/线性回归/">
+        <h2 class="post-title">
+            【机器学习】线性回归
+        </h2>
+        <h3 class="post-subtitle">
+            线性回归模型
+        </h3>
+        <div class="post-content-preview">
+            线性回归
+线性模型形式简单，易于建模，许多非线性模型都是在线性模型的基础上通过引入层级结构或高位映射得到。
+回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系，回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知函数。按照输入变量的个数，可分为一元回归和多元回归；按照输入变量和输出变量之间的类型，可分为线性回归和非线性回归。
+
+只考虑一种变......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/08/softmax/">
+        <h2 class="post-title">
+            【机器学习】多分类softmax分类器
+        </h2>
+        <h3 class="post-subtitle">
+            逻辑回归模型
+        </h3>
+        <div class="post-content-preview">
+            ...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Nuage on
+            2019-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/03/08/Tensorflow/">
         <h2 class="post-title">
             【机器学习】Tensorflow原理
@@ -452,129 +552,6 @@ PCA的核心原理就是基变换
 Tensorflow如何训练模型
 
 ...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/03/08/逻辑回归/">
-        <h2 class="post-title">
-            【机器学习】逻辑回归
-        </h2>
-        <h3 class="post-subtitle">
-            逻辑回归模型
-        </h3>
-        <div class="post-content-preview">
-            逻辑回归
-线性回归中是描述因变量的期望与自变量之间的线性关系，回归通常指结果是一个值，而逻辑回归虽然也叫回归，但是却是一个分类模型。**实际上是通过Sigmoid函数将回归结果映射到0-1的区间。**是最经典的二分类方法，其结果是离散的，如：是，否。一般拿到一个分类任务首先尝试的就是逻辑回归，再看其他方法是否比逻辑回归好。
-逻辑回归的决策边界：可以是非线性的
-Sigmoid函数
-二分类问题的......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/03/08/Kmeans/">
-        <h2 class="post-title">
-            【机器学习】聚类算法Kmeans
-        </h2>
-        <h3 class="post-subtitle">
-            文本分析
-        </h3>
-        <div class="post-content-preview">
-            什么是聚类算法
-解决无监督问题，没有分类的标签，聚类则把相似的东西分到一组
-难点：
-
-没有办法基于预测值进行评估
-如何调参
-
-K-Means
-基本概念
-
-K值：人为指定一个K值，将数据分类为K个堆
-质心：向量各维取平均值
-距离：每两个数据点之间的欧氏距离或余弦相似度（需要先标准化）
-优化目标：
-
-最外层表示有多少个蔟
-内层表示对于每一个簇的中心点，让每一个样本到重心点的距离越小越好
-
-K-M......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Nuage on
-            2019-03-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#机器学习" title="机器学习">机器学习</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/03/08/什么是NLP/">
-        <h2 class="post-title">
-            【机器学习】NLP基础
-        </h2>
-        <h3 class="post-subtitle">
-            文本分析
-        </h3>
-        <div class="post-content-preview">
-            什么是NLP
-Natural Language Processing,让电脑懂人类的语言
-主要范畴：
-
-文本分析
-信息检索
-词性标注
-问答系统等
-
-NLP技术
-##词法分析
-###分词技术
-
-###词性标注
-为分词结果中每个词标注一个正确的词性的程序
-
-###命名实体识别
-NER，专门识别，识别文中拥有特定意义的实体，例如人名，地名，机构名，专有名词等。分为三大类（实体类，时间类和数字类）、......
         </div>
     </a>
     
@@ -628,7 +605,11 @@ NER，专门识别，识别文中拥有特定意义的实体，例如人名，�
     <div class="tags">
         
             
-            <a href="/tags/#机器学习" title="机器学习" rel="24">机器学习</a>
+            <a href="/tags/#机器学习" title="机器学习" rel="30">机器学习</a>
+            
+        
+            
+            <a href="/tags/#图像处理" title="图像处理" rel="4">图像处理</a>
             
         
             
@@ -723,15 +704,15 @@ NER，专门识别，识别文中拥有特定意义的实体，例如人名，�
         </li>
       
         <li>
-          <a href="/2019/03/08/python文本挖掘/">【机器学习】Python文本挖掘</a>
-        </li>
-      
-        <li>
           <a href="/2019/03/08/DBSCAN/">【机器学习】聚类算法DBSCAN</a>
         </li>
       
         <li>
-          <a href="/2019/03/08/PCA主成分分析/">【机器学习】PCA主成分分析</a>
+          <a href="/2019/03/08/逻辑回归/">【机器学习】逻辑回归</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/08/Kmeans/">【机器学习】聚类算法Kmeans</a>
         </li>
       
     </ul>
